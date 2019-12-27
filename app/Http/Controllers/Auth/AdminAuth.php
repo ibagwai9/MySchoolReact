@@ -23,7 +23,7 @@ trait AdminAuth {
             return response()->json(['error'=>'Unauthorised'], 401); 
         } 
     } 
-/** 
+    /** 
      * Register api 
      * 
      * @return \Illuminate\Http\Response 
@@ -36,17 +36,17 @@ trait AdminAuth {
             'password' => 'required', 
             'c_password' => 'required|same:password', 
         ]);
-if ($validator->fails()) { 
+        if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
         }
-$input = $request->all(); 
+        $input = $request->all(); 
         $input['password'] = bcrypt($input['password']); 
         $user = User::create($input); 
         $success['token'] =  $user->createToken('MyApp')-> accessToken; 
         $success['name'] =  $user->name;
-return response()->json(['success'=>$success], $this-> successStatus); 
+        return response()->json(['success'=>$success], $this-> successStatus); 
     }
-/** 
+    /** 
      * details api 
      * 
      * @return \Illuminate\Http\Response 
@@ -58,16 +58,31 @@ return response()->json(['success'=>$success], $this-> successStatus);
         return response()->json(['success' => $user], $this-> successStatus); 
     } 
 
+    /** 
+     *  
+     * 
+     * @return Array(Users)
+     */ 
+    public function users() 
+    { 
+        $users = User::all()->map(function($user)
+        {
+            return $user->userable;
+        }); 
+        
+        return response()->json(['users'=>$users], $this-> successStatus); 
+    } 
+
     /**
      * Log the user out of the application.
      *
      * @return \Illuminate\Http\Response
      */
-    public function getLogout()
+    public function logout()
     {
         $this->auth->logout();
 
-        return redirect('/');
+        return null;
     }
 
 }

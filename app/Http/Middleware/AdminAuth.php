@@ -4,7 +4,6 @@ use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
 
 class AdminAuth {
 
@@ -39,11 +38,9 @@ class AdminAuth {
             if ($user->userable_type === "App\\Admin") {
                 return $next($request);
             }
-
-            return new RedirectResponse(url('/admin'));
         }
 
-        return new RedirectResponse(url('/admin/login'));
+        return route('login');  
     }
 
 }

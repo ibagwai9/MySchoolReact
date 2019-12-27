@@ -43,7 +43,7 @@ class GuardianAuth {
                 return $next($request);
         }
 
-        return new RedirectResponse(url('/guardian/login'));
+        return route('login'));
     }
 
 }

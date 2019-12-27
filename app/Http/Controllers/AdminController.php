@@ -1,7 +1,7 @@
 <?php namespace App\Http\Controllers;
 
-use Illuminate\Contracts\Auth\Guard;
 use App\Http\Controllers\Auth\AdminAuth;
+use Illuminate\Contracts\Auth\Guard;
 
 class AdminController extends Controller {
 
@@ -32,9 +32,11 @@ class AdminController extends Controller {
     {
         $this->auth = $auth;
 
-        //$this->middleware('admin_auth', [
-        //    'except' => ['getIndex', 'getRegister', 'postLogin', 'postRegister', 'getIndex']
-        //]);
+        
+        $this->middleware('admin_auth', [
+           'except' => ['register', 'login']
+        ]);
+        
 
     }
 

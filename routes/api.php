@@ -36,11 +36,13 @@ Route::group(array('middleware'=>'api'), function() {
             Route::get('news', function () {
                 return 'Welcome';
             });
-            Route::get('login', 'Api\AdminController@login');
-            Route::post('user','AdminController@user');
             Route::post('login', 'AdminController@login');
-            Route::get('register', 'AdminController@getRegister');
-            Route::get('logout', 'AdminController@getLogout');
+            Route::get('login', function()
+            {
+                return response()->json(['error'=>'Unauthorised','message'=>'login first'], 401);
+            })->name('login');
+            Route::post('users','AdminController@users')->middleware('auth:api');
+            Route::post('logout', 'AdminController@logout');
         
             //Dashboard
             Route::post('user', 'AdminController@user')->middleware('auth:api');
