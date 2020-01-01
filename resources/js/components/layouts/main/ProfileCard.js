@@ -55,9 +55,9 @@ const ProfileCard = ({ classes, displayName, username, avatarUrl, profileUrl, co
         </div>
       </div>
       <ProfileStats
-        posts={stats.posts}
-        followers={stats.followers}
-        following={stats.following}
+        teachers={stats.teachers}
+        students={stats.students}
+        parents={stats.parents}
       />
     </Paper>
   );

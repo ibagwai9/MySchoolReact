@@ -42,9 +42,9 @@ trait AdminAuth {
         $input = $request->all(); 
         $input['password'] = bcrypt($input['password']); 
         $user = User::create($input); 
-        $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-        $success['name'] =  $user->name;
-        return response()->json(['success'=>$success], $this-> successStatus); 
+        $user['token'] =  $user->createToken('MyApp')-> accessToken; 
+        $user['name'] =  $user->name;
+        return response()->json(['user'=>$user], $this-> successStatus); 
     }
     /** 
      * details api 
@@ -55,7 +55,7 @@ trait AdminAuth {
     { 
         $user = Auth::user(); 
         $user->userable;
-        return response()->json(['success' => $user], $this-> successStatus); 
+        return response()->json(['user' => $user], $this-> successStatus); 
     } 
 
     /** 

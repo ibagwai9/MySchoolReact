@@ -43,11 +43,11 @@ class StudentAuth {
                 return $next($request);
             }
             
-            return new RedirectResponse(url('/'));
+            return response()->json(['error'=> 'unauthorized'], 401);
             
         }
         
-        return new RedirectResponse(url('/student/login'));
+        return response()->json(['error'=> 'unauthorized'], 401);
         
     }
 

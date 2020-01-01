@@ -13,19 +13,19 @@ const styles = theme => ({
   },
 });
 
-const ProfileStats = ({ classes, className, posts, followers, following }) => (
+const ProfileStats = ({ classes, className, parents, teachers, students }) => (
   <div className={cx(classes.root, className)}>
     <div>
-      <Typography variant="h6">{posts}</Typography>
-      <Typography variant="caption" color="textSecondary">Posts</Typography>
+      <Typography variant="h6">{teachers}</Typography>
+      <Typography variant="caption" color="textSecondary">Teachers</Typography>
     </div>
     <div>
-      <Typography variant="h6">{followers}</Typography>
-      <Typography variant="caption" color="textSecondary">Followers</Typography>
+      <Typography variant="h6">{students}</Typography>
+      <Typography variant="caption" color="textSecondary">Students</Typography>
     </div>
     <div>
-      <Typography variant="h6">{following}</Typography>
-      <Typography variant="caption" color="textSecondary">Following</Typography>
+      <Typography variant="h6">{parents}</Typography>
+      <Typography variant="caption" color="textSecondary">Parents</Typography>
     </div>
   </div>
 );

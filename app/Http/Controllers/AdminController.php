@@ -20,7 +20,7 @@ class AdminController extends Controller {
 
     use AdminAuth;
 
-
+    protected $redirectTo = '/';
     /**
      * Create a new authentication controller instance.
      *

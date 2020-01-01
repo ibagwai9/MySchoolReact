@@ -39,8 +39,8 @@ class AdminAuth {
                 return $next($request);
             }
         }
-
-        return route('login');  
+         
+        return response()->json(['error'=> 'unauthorized'], 401);
     }
 
 }

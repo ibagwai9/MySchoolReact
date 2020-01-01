@@ -24,10 +24,8 @@ const styles = theme => ({
   },
   avatar: {
     marginTop: -100,
-    height: 152,
-    width: 152,
-    marginBottom: theme.spacing(3),
-    border: `5px solid ${theme.palette.common.white}`,
+    height: 180,
+    width: 180,
     background: theme.palette.grey[100],
   },
   stats: {
@@ -53,9 +51,9 @@ const ProfileHeader = ({ classes, displayName, bio, avatarUrl, coverUrl, stats, 
       </div>
       <ProfileStats
         className={classes.stats}
-        posts={stats.posts}
-        followers={stats.followers}
-        following={stats.following}
+        teachers={stats.teachers}
+        students={stats.students}
+        parents={stats.parents}
       />
     </Paper>
   );

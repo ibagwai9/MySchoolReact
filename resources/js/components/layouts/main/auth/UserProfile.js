@@ -7,7 +7,7 @@ import { userActions } from '../../../../actions'
 import logo from '../../../../images/logo.png'
 import PostCard from '../PostCard'
 import ProfileHeader from '../ProfileHeader'
-import AppBar from '../AppBar'
+import AppBar from '../AuthBar'
 
 class UserProfile extends React.Component{
     constructor(props) {
@@ -16,80 +16,48 @@ class UserProfile extends React.Component{
           this.state = {
              authenticated: false
          }
-         console.log(this.props)
     }   
     
    componentDidMount() {
+        this.props.dispatch(userActions.getAll())
         this.props.dispatch(userActions.getAuth())
-        const user = localStorage.getItem('user')
-        console.log({props:this.props, user})
+        console.log({User:this.props})
     }
 
     render(){
-            const { user, users, className, classes } = this.props
-        return (
-          <div> <AppBar />
-        <Paper className={className}> 
+      const { get_user, get_users, className, classes } = this.props
+      let user = {}
+      let users = {}
+      if(get_user.item){
+        user = get_user.item.user
+      }
+      if(get_users.items){
+        users = get_users.items.users
+      }
+      return (<div> 
+          <AppBar />
+          <Paper className={className}> 
             <CardContent>
-                <div className={classes.root}>
-   
-    <div className={classes.main}>
-      <ProfileHeader
-        className={classes.header}
-        displayName="Brandon Folks"
-        bio="Professional photographer"
-        coverUrl="https://source.unsplash.com/collection/841904"
-        avatarUrl="https://source.unsplash.com/collection/895539"
-        stats={{
-          posts: 112,
-          followers: 234,
-          following: 22,
-        }}
-      />
+              <div className={classes.root}>
+                <div className={classes.main}>
+                  <ProfileHeader
+                    className={classes.header}
+                    displayName={user.username}
+                    bio="Professional photographer"
+                    coverUrl="https://source.unsplash.com/collection/841904"
+                    avatarUrl={logo}
+                    stats={{
+                      teachers:312,
+                      students:233,
+                      parents:354
+                    }}
+                  />
 
-      <Grid container>
-        <Grid item xs={12} sm={6} md={4}>
-          <PostCard
-            title="Spicy Carrot Salad"
-            subtitle="@Anna posted 1 hour ago"
-            imageUrl="https://source.unsplash.com/L1ZhjK-R6uc/1600x900"
-            avatarUrl="https://source.unsplash.com/b1Hg7QI-zcc/150x150"
-            body="Because this salad is so simple, fresh, top-quality tomatoes and mozzarella are important"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <PostCard
-            title="Burrata Black Bean Burgers"
-            subtitle="@Sandra posted 3 days ago"
-            imageUrl="https://source.unsplash.com/sWq83ZbZb6U/1600x900"
-            avatarUrl="https://source.unsplash.com/EGVccebWodM/150x150"
-            body="These vegetarian burgers are delicious! Your carnivorous friends will be impressed. My favorite way to serve is on a whole-wheat..."
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <PostCard
-            title="Vegan Shepherd's Pie"
-            subtitle="@Janne posted 1 week ago"
-            imageUrl="https://source.unsplash.com/l_DY1GYtjTo/1600x900"
-            avatarUrl="https://source.unsplash.com/yl2rJVuNWFQ/150x150"
-            body="Looks yummy, but not very healthy at all. I'll try leaving out the vegan mayo and cream cheese. I think I might try it with soaked..."
-          />
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <PostCard
-            title="Rice cake eggs"
-            subtitle="@James posted 2 weeks ago"
-            imageUrl="https://source.unsplash.com/kZeUekYF9Jw/1600x900"
-            avatarUrl="https://source.unsplash.com/d2MSDujJl2g/150x150"
-            body="When you've got the whole gang along for the camping trip, make breakfast eggs the easy way and enjoy a slow sip of your coffee..."
-          />
-        </Grid>
-      </Grid>
-    </div>
-  </div>
-            </CardContent>
-        </Paper>
-        </div>)
+            </div>
+          </div>
+        </CardContent>
+      </Paper>
+    </div>)
     }   
 }
 const styles = theme => ({
@@ -121,14 +89,13 @@ UserProfile.propTypes = {
 }
 
 const mapStateToProps = (state)=> {
-    const { users, authentication } = state
-    let user = {}
-    if(authentication)
-      user = authentication.user
+    const { user } = state
+    const { users } = state
+    console.log({fly_state:state})
 
     return  {
-        user,
-        users
+        get_user:user,
+        get_users:users
     } 
 }
 

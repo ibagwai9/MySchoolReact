@@ -1,32 +1,19 @@
-/*import { createStore, combineReducers, applyMiddleware } from "redux";
-import { reducer as formReducer } from "redux-form";
-import thunk from 'redux-thunk';
-//import PostsReducer from "./reducer_posts";
 
-const rootReducer = combineReducers({
-  //posts: PostsReducer,
-  form: formReducer
-});
-
-const store = createStore(
-  rootReducer,
-  applyMiddleware(thunk)
- );
-
-export default store;
-*/
 
 import { createStore,  combineReducers, applyMiddleware } from "redux";
 import { reducer as formReducer } from "redux-form";
 import reduxThunk from 'redux-thunk';
 //import userReducer from "./reducers/users";
-//import ReduxPromise from 'redux-promise';
-
+import { authentication } from './reducers/authentication';
+import { users } from './reducers/users';
+import { user } from './reducers/user';
+import { alert } from './reducers/alert';
 
 const rootReducer = combineReducers({
-  //posts: PostsReducer,
-
-  //auth: userReducer,
+  authentication,
+  users,
+  user,
+  alert,
   form: formReducer,
 });
 
