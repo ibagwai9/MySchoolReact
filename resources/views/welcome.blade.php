@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>BGSWSchool</title>
     </head>
-    <link rel="stylesheet" type="text/css" href="http://localhost:8000/css/app.css">
+    <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8000/css/app.css">
 
 <body>
     <div id="root"></div>
