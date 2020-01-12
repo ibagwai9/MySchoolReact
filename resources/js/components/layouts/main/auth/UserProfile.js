@@ -21,7 +21,6 @@ class UserProfile extends React.Component{
    componentDidMount() {
         this.props.dispatch(userActions.getAll())
         this.props.dispatch(userActions.getAuth())
-        console.log({User:this.props})
     }
 
     render(){

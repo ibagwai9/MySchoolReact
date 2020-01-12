@@ -5,7 +5,7 @@ import cx from 'classnames';
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import { Typography } from '@material-ui/core';
-import ProfileStats from './ProfileStats';
+import ParentProfileStats from './ParentProfileStats';
 
 const styles = theme => ({
   root: {
@@ -34,7 +34,7 @@ const styles = theme => ({
   }
 });
 
-const ProfileHeader = ({ classes, displayName, bio, avatarUrl, coverUrl, stats, className }) => {
+const ProfileHeader = ({ classes, displayName, bio, avatarUrl, coverUrl, data, className }) => {
   const headerStyle = coverUrl
     ? { backgroundImage: `url('${coverUrl}')` }
     : null;
@@ -49,11 +49,9 @@ const ProfileHeader = ({ classes, displayName, bio, avatarUrl, coverUrl, stats, 
           {bio}
         </Typography>
       </div>
-      <ProfileStats
+      <ParentProfileStats
         className={classes.stats}
-        teachers={stats.teachers}
-        students={stats.students}
-        parents={stats.parents}
+        data={data}
       />
     </Paper>
   );
@@ -66,11 +64,11 @@ ProfileHeader.propTypes = {
   avatarUrl: PropTypes.string,
   bio: PropTypes.string,
   displayName: PropTypes.string,
-  stats: PropTypes.shape({
+  /*stats: PropTypes.shape({
     posts: PropTypes.number,
     followers: PropTypes.number,
     following: PropTypes.number,
-  })
+  })*/
 };
 
 export default withStyles(styles)(ProfileHeader);

@@ -7,12 +7,14 @@ import reduxThunk from 'redux-thunk';
 import { authentication } from './reducers/authentication';
 import { users } from './reducers/users';
 import { user } from './reducers/user';
+import { parent } from './reducers/parent';
 import { alert } from './reducers/alert';
 
 const rootReducer = combineReducers({
   authentication,
   users,
   user,
+  parent,
   alert,
   form: formReducer,
 });

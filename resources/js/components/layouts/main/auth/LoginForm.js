@@ -5,7 +5,7 @@ import asyncLoginValidate from './asyncLoginValidate'
 import { reduxForm, Field } from 'redux-form'
 
 import { connect } from 'react-redux'
-import { userActions } from '../../../../actions'
+import { userActions, parentActions } from '../../../../actions'
  
 import logo from '../../../../images/logo.png'
 import { Button, 
@@ -90,7 +90,15 @@ class LoginForm extends React.Component{
         const { email, password, dispatch } = props
         const username = email
         if (username && password) {
-            this.props.dispatch(userActions.login(username, password));
+            switch(this.props.user) {
+                case 'Parent':
+                    this.props.dispatch(parentActions.login(username, password));
+                    break;
+                default :
+                    this.props.dispatch(userActions.login(username, password));
+                    break;
+            }
+           
         }
     }
   
@@ -115,7 +123,7 @@ class LoginForm extends React.Component{
     
    
     render(){
-        const { handleSubmit, pristine, reset, className, submitting, classes, loggingIn } = this.props
+        const { handleSubmit, pristine, reset, className, submitting, classes, loggingIn, user } = this.props
         return (
         <Paper className={className}>
             <CardContent>
@@ -125,7 +133,7 @@ class LoginForm extends React.Component{
                         src={logo}
                     />
                 </div>
-                <Typography variant="h5" align="center">Login</Typography>
+                <Typography variant="h5" align="center">{user} Login</Typography>
                 <Typography variant="subtitle2" color="secondary" align="center">{this.state.loginError}</Typography>
 
                 <form className={classes.form} onSubmit={handleSubmit(this.handleLoginSubmit.bind(this))}>

@@ -2,7 +2,8 @@
 
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
-use Illuminate\Http\RedirectResponse;
+
+use Illuminate\Support\Facades\Auth;
 
 class GuardianAuth {
 
@@ -19,11 +20,7 @@ class GuardianAuth {
      * @param  Guard  $auth
      * @return void
      */
-    public function __construct(Guard $auth)
-    {
-        $this->auth = $auth;
-    }
-
+    
     /**
      * Handle an incoming request.
      *
@@ -31,19 +28,21 @@ class GuardianAuth {
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard =null)
     {
 
-        if ($this->auth->check()) {
+        if (Auth::guard($guard)->check()) {
 
-            $user = $this->auth->user();
-
-            //If the logged in user is a parent continue with the request.
-            if ($user->userable_type === "App\\Guardian")
+            $parent = Auth::guard($guard)->user();
+            //If the logged in user is a admin continue with the request.
+            if ($parent->userable_type === "App\\Guardian") {
                 return $next($request);
+            }
         }
-
-        return route('login'));
+         
+        return response()->json(['error'=> 'unauthorized'], 401);
     }
 
 }
+
+

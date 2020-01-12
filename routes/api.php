@@ -21,16 +21,7 @@ Route::group(array('middleware'=>'api'), function() {
         Route::get('news', function(){
                 return 'Welcome to news';
         });
-        Route::group(array('prefix'=>'page'), function() {
-
-            Route::get('/image-gallery', 'PageController@gallery');
-            Route::get('/news', 'PageController@news');
-            Route::get('/show-news/{id}', 'PageController@showNews');
-            Route::get('/about', 'PageController@about');
-            Route::get('/contact', 'PageController@contact');
-            Route::post('/email', 'PageController@email');
-
-        });
+    
 
         Route::group(['prefix'=>'admin'], function() {
             Route::get('news', function () {
@@ -46,7 +37,6 @@ Route::group(array('middleware'=>'api'), function() {
         
             //Dashboard
             Route::post('user', 'AdminController@user')->middleware('auth:api');
-            Route::get('dashboard', 'AdminController@getDashboard');
 
         });
 
@@ -97,20 +87,25 @@ Route::group(array('middleware'=>'api'), function() {
                 'getProfile' => 'profile'
             ]);
         });
-        Route::group(array('prefix'=>'guardian'), function() {
 
-            Route::get("/", 'GuardianController@getProfile');
-            Route::get('login', 'GuardianController@getIndex');
-            Route::post('login', 'GuardianController@postLogin');
-            Route::get('register', 'GuardianController@getRegister');	
-            Route::post('register', 'GuardianController@postRegister');
-            Route::get('logout', 'GuardianController@getLogout');
-            //Activity route
-            Route::get('profile', 'GuardianController@getProfile');
-            Route::get('payment', 'GuardianController@getPayment');
-            Route::get('edit-profile/{guardian}', 'GuardianController@getEditProfile');
-            Route::get('view-result/{student}', 'GuardianController@getViewResult');
-            Route::resource('childs', 'ChildsAccountController');
+        Route::group(['prefix'=>'guardian'], function() {
+           
+            Route::post('login', 'GuardianController@login');
+            Route::get('login', function()
+            {
+                return response()->json(['error'=>'Unauthorised','message'=>'login first'], 401);
+            })->name('login');
+
+            Route::post('students','GuardianController@students')->middleware('auth:api');
+
+            Route::get('school/{school}','GuardianController@getSchool');
+            Route::post('logout', 'GuardianController@logout');
+        
+            //Dashboard
+            Route::post('parent', 'GuardianController@parent')->middleware('auth:api');
+            Route::get('child/{student}', 'GuardianController@getChild')->middleware('auth:api');
+
+        
         });
     });
 });

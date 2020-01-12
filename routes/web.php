@@ -8,6 +8,9 @@ Route::get('/{path?}', function($path = null){
 
  return view('welcome');
 });
+Route::get('/{path}/{any?}', function () {
+    return view('welcome');
+});
 
 
 /*
