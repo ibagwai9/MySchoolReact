@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
   },
 }));
+
 const getSchName =(id)=>{
   return getSchool()[id-1].name;
 }

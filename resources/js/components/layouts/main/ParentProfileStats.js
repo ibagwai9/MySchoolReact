@@ -25,7 +25,7 @@ const ParentProfileStats = ({ classes, className, data }) => (
     </div>
     <div>
       <Typography variant="h6">{data.item[2]}</Typography>
-      <Typography variant="caption" color="textSecondary">#{data.val[2]}</Typography>
+      <Typography variant="caption" color="textSecondary">{data.val[2]}</Typography>
     </div>
   </div>
 );

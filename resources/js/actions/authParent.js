@@ -8,7 +8,8 @@ export const parentActions = {
     logout,
     getAuth,
     getAll,
-    getChild
+    getChild,
+    getSessionsFrom
 };
 
 function login(username, password) {
@@ -88,4 +89,20 @@ function getChild(id) {
     function request() { return { type: parentConstants.GETCHILD_REQUEST } }
     function success(child) { return { type: parentConstants.GETCHILD_SUCCESS, child} }
     function failure(error) { return { type: parentConstants.GETCHILD_FAILURE, error } }
+}
+
+function getSessionsFrom(id) {
+    return dispatch => {
+        dispatch(request());
+
+        parentService.getSessionsFrom(id)
+            .then(
+                child => dispatch(success(child)),
+                error => dispatch(failure(error))
+            );
+    };
+
+    function request() { return { type: parentConstants.GET_SESSIONS_REQUEST } }
+    function success(sessions) { return { type: parentConstants.GET_SESSIONS_SUCCESS, sessions} }
+    function failure(error) { return { type: parentConstants.GET_SESSIONS_FAILURE, error } }
 }

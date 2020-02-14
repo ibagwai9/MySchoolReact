@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+import List  from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,11 +13,12 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import LockIcon from '@material-ui/icons/LockOpen';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './listItems';
+import { mainListItems, SecondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
@@ -99,8 +100,18 @@ const useStyles = makeStyles(theme => ({
   fixedHeight: {
     height: 240,
   },
+  link:{
+    textDecoration:'none'
+  }
 }));
-  export default function AppBarMain() {
+const rendLastList = (student = null)=>{
+  if(student && student.id){
+    return <SecondaryListItems student={student} />
+  }else{
+    return <div> </div>
+  }
+}
+  export default function AppBarMain({student}) {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
     const handleDrawerOpen = () => {
@@ -124,8 +135,11 @@ const useStyles = makeStyles(theme => ({
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Parent Dashboard
+            <Link to='/g-profile' style={{textDecoration:'none'}}>Parent Dashboard</Link>
           </Typography>
+          <IconButton color="inherit">
+          <Link to='g-login'> <LockIcon /></Link>
+          </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">
               <NotificationsIcon />
@@ -150,7 +164,7 @@ const useStyles = makeStyles(theme => ({
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
-        <List>{secondaryListItems}</List>
+        <List>{rendLastList(student)}</List>
       </Drawer>
       </>)
 }

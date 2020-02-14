@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ListItem from '@material-ui/core/ListItem';
 
 const NavListItem = ({ children, ...props }) => (
-  <ListItem dense button {...props}>
+  <ListItem  dense button {...props}>
      {children}
   </ListItem>
 );

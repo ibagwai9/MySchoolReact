@@ -99,11 +99,14 @@ Route::group(array('middleware'=>'api'), function() {
             Route::post('students','GuardianController@students')->middleware('auth:api');
 
             Route::get('school/{school}','GuardianController@getSchool');
+
             Route::post('logout', 'GuardianController@logout');
         
             //Dashboard
             Route::post('parent', 'GuardianController@parent')->middleware('auth:api');
             Route::get('child/{student}', 'GuardianController@getChild')->middleware('auth:api');
+            Route::get('sessions-from/{session}', 'GuardianController@getSessions')
+            ->middleware('auth:api');
 
         
         });

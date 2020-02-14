@@ -38,27 +38,27 @@ function Project(props)
 
 const items = [
     {
-        name: "Lear Music Reader",
-        description: "A PDF Reader specially designed for musicians.",
-        color: "#64ACC8",
+        name: "iBAcademy",
+        description: "Internet Base Academy",
+        color: "#9CD81D",
         src:imgOne
     },
     {
-        name: "Hash Code 2019",
-        description: "My Solution on the 2019 Hash Code by Google Slideshow problem.",
+        name: "iBAcademy Version 0.1",
+        description: "Ishaq Ibrahim Academy Project 2020",
         color: "#7D85B1",
         src:imgOne
     },
     {
-        name: "Terrio",
-        description: "A exciting mobile game game made in the Unity Engine.",
+        name: "School Management System",
+        description: "School Admin with full controle",
         color: "#CE7E78",
         src:imgTwo
     },
     {
-        name: "React Carousel",
-        description: "A Generic carousel UI component for React using material ui.",
-        color: "#C9A27E",
+        name: "3x Faster with JWT Oauth2 Authentication",
+        description: "Assyncronious Web App with full API, Easy integratable with Android App",
+        color: "#000000",
         src:imgThree
     }
 ]
@@ -104,7 +104,7 @@ export default class ImageSlider extends React.Component
     {
         return (
             <div style={{marginTop: "50px", color: "#494949"}}>
-                <h2 style={{textAlign:'center'}}>Welcome to BGWSchools portal</h2>
+                <h2 style={{textAlign:'center', color:'green'}}>Welcome to iBAcademy (School Management Sestem)</h2>
 
                 <Carousel 
                     className="SecondExample"

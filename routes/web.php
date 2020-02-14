@@ -1,8 +1,8 @@
 <?php
 
-Route::get('/', function () {
+Route::get('/{path?}', function ($path = null) {
     return view('welcome');
-});
+})->where('path', '.*');
 
 Route::get('/{path?}', function($path = null){ 
 
@@ -11,8 +11,11 @@ Route::get('/{path?}', function($path = null){
 Route::get('/{path}/{any?}', function () {
     return view('welcome');
 });
+Route::get('/{path?}/{any?}/{s?}/{a?}/', function () {
+    return view('welcome');
+});
 
-
+//Route::get('/{path?}', function($path = null){ return View::make('app'); })->where('path', '.*');
 /*
 
 |--------------------------------------------------------------------------

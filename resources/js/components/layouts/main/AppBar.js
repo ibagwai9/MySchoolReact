@@ -16,6 +16,7 @@ import {
 
 import LockOpen from '@material-ui/icons/LockOpen';
 import EditIcon from '@material-ui/icons/Edit';
+import Info from '@material-ui/icons/Info';
 import InputSearch from './InputSearch';
 import ActivityListItem from './ActivityListItem';
 import NavListItem from './NavListItem';
@@ -25,14 +26,14 @@ import logo from '../../../images/logo.png'
 
 const styles = theme => ({
   root: {},
-  appBar: {
+  appBar: { 
     background: '#9CD81D',
-    color:'white'
+    color:'white',
+    boxShadow: '3px 3px 5px 6px #ccc'
   },
   toolbar: {
     width: '100%',
     maxWidth: theme.layout.contentMaxWidth,
-    margin: '0 auto',
   },
   flex: {
     flexGrow: 1,
@@ -44,15 +45,28 @@ const styles = theme => ({
   },
   icon: {
     marginRight: theme.spacing(3),
-    margin: '10px',
-    color:'#FFFFFF'
+    margin: '0px',
+    fontWeight:'bolder',
+    color:'#FFFFFF',
+    diplay:'inlineBlock'
   },
-  link: { 
+  btn:{
+    color: "green",
+    textTransform: 'none',
     textDecoration:'none',
   },
+  btn2: { 
+    textTransform: 'none',
+    color:'#FFFFFF',
+    fontSize:'30'
+  },
+  link:{
+    textDecoration:'none',
+    fontSize:'30'
+  },
   logo: { 
-    marginLeft: '-120px',
-    marginRight:'20px'
+    marginLeft: '0px',
+    marginRight:'0px'
   }
 });
 
@@ -61,18 +75,22 @@ const AppBar = ({ classes, children }) => {
   const [notificationOpen, setNotificationOpen] = useState(false);
   const notificationButton = useRef();
 
+  const [loginOpen, setLoginOpen] = useState(false);
+  const loginButton = useRef();
+
+  const [registerOpen, setRegisterOpen] = useState(false);
+  const registerButton = useRef();
+
   const handleToggleNotification = () => {
     setNotificationOpen(!notificationOpen);
   };
+
   const handleToggleLogin = () => {
     setLoginOpen(!loginOpen);
   };
 
-  const [loginOpen, setLoginOpen] = useState(false);
-  const loginButton = useRef();
-
-  const handleToggleNLogin = () => {
-    setLoginOpen(!loginOpen);
+  const handleToggleRegister = () => {
+    setRegisterOpen(!registerOpen);
   };
 
   return (
@@ -83,29 +101,25 @@ const AppBar = ({ classes, children }) => {
           src={logo}
         />
         <Typography variant="h4" color="inherit">
-          <Link className={classes.link} to="/">BGWSchools</Link>
+          <Link style={{textDecoration: 'none'}} to="/">IBAcademy</Link>
         </Typography>
-        <InputSearch
-          className={classes.search}
-          placeholder="Search"
-          fullWidth={false}
-        />
+       
         <div className={classes.flex} />
         
         
         <IconButton
           className={classes.icon}
-          onClick={handleToggleNotification}
-          buttonRef={notificationButton}
+          onClick={handleToggleRegister}
+          buttonRef={registerButton}
         >
           <EditIcon />
           <span>Register</span>
         </IconButton>
 
         <Popover
-          open={notificationOpen}
-          anchorEl={notificationButton.current}
-          onClose={handleToggleNotification}
+          open={registerOpen}
+          anchorEl={registerButton.current}
+          onClose={handleToggleRegister}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'center',
@@ -115,15 +129,10 @@ const AppBar = ({ classes, children }) => {
             horizontal: 'center',
           }}
         >
-          <List>
+          <List style={{fontSize:'10'}}>
             <NavListItem> 
-              <Button >
-                <Link to="/sign-up">Admin</Link>
-              </Button>
-            </NavListItem>
-            <NavListItem> 
-              <Button >
-              <Link to="/sing-up">Student</Link>
+              <Button className={classes.btn}>
+              <Link style={{textDecoration: 'none'}} to="/g-sing-up">Guardian</Link>
               </Button>
             </NavListItem>
           </List>
@@ -151,25 +160,67 @@ const AppBar = ({ classes, children }) => {
         >
         <List>
           <NavListItem> 
-            <Button >
-              <Link to="/login">Admin</Link>
+            <Button className={classes.btn}>
+              <Link style={{textDecoration: 'none'}}   to="/login">Admin</Link>
             </Button>
           </NavListItem>
           <NavListItem> 
-            <Button >
-              <Link to="/login">Student</Link>
+            <Button className={classes.btn}>
+              <Link style={{textDecoration: 'none'}}  to="/t-login">Teacher</Link>
+            </Button>
+          </NavListItem>
+          <NavListItem> 
+            <Button className={classes.btn}>
+              <Link style={{textDecoration: 'none'}} to="/g-login">Guardian</Link>
+            </Button>
+          </NavListItem>
+          <NavListItem> 
+            <Button className={classes.btn}>
+              <Link style={{textDecoration: 'none'}} to="/s-login">Student</Link>
             </Button>
           </NavListItem>
         </List>
         </Popover>
-        <Button style={{color:'#FFF'}}>
-          <Link to="/login">About</Link>
-        </Button>
-      </Toolbar>
-      {/*<Avatar
+        <IconButton
           className={classes.icon}
-          src="https://source.unsplash.com/collection/895539"
-      />*/}
+          onClick={handleToggleNotification}
+          buttonRef={notificationButton}
+        >
+          <Info />About
+          
+        </IconButton>
+        <Popover
+          open={notificationOpen}
+          anchorEl={notificationButton.current}
+          onClose={handleToggleNotification}
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'center',
+          }}
+          transformOrigin={{
+            vertical: 'top',
+            horizontal: 'center',
+          }}
+        >
+          <List>
+            <NavListItem> 
+              <Button className={classes.btn}>
+                <Link style={{textDecoration: 'none'}} to="/about">About project</Link>
+              </Button>
+            </NavListItem> 
+            <NavListItem> 
+              <Button className={classes.btn}>
+                <Link style={{textDecoration: 'none'}} to="/about">About dependacies</Link>
+              </Button>
+            </NavListItem> 
+            <NavListItem> 
+              <Button className={classes.btn}>
+                <Link style={{textDecoration: 'none'}} to="/about">About developer</Link>
+              </Button>
+            </NavListItem> 
+          </List>
+        </Popover>
+      </Toolbar>
     </AppBarBase >
   );
 };

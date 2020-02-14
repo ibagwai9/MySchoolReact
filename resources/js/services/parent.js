@@ -6,7 +6,8 @@ export const parentService = {
   logout,
   getAuth,
   getAll,
-  getChild
+  getChild,
+  getSessionsFrom
 };
 
 function login(username, password) {
@@ -61,6 +62,15 @@ function getChild(id) {
   };
 
   return fetch(`${URLS.ROOT_PARENT}/child/${id}`, requestOptions).then(handleResponse);
+}
+
+function getSessionsFrom(id) {
+  const requestOptions = {
+      method: 'GET',
+      headers: parentHeader(),
+  };
+
+  return fetch(`${URLS.ROOT_PARENT}/sessions-from/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\GuardianAuth;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 use App\Student;
+use App\Session;
 
 class GuardianController extends Controller {
 
@@ -44,12 +45,32 @@ class GuardianController extends Controller {
     /** 
      *  
      * 
-     * @return school name
+     * @return child
      */ 
     public function getChild(Request $request, Student $student) 
     {        
         $student->user;
+        $student->current_session =Session::active();
+        $student->session;
+        $student->results->map(function($result)
+        {
+            return $result->session;
+        });
+        $student->results->map(function($result)
+        {
+            return $result->subject;
+        });
+        $student->subjects = \App\Subject::all();
         return response()->json(['child'=>$student], $this-> successStatus); 
     } 
-
+    /** 
+     *  
+     * 
+     * @return child
+     */ 
+    public function getSessions(Request $request, Session $session) 
+    { 
+        $sessions = Session::where('id','>=',$session->id)->get();
+        return response()->json(['sessions'=>$sessions]);
+    }       
 }

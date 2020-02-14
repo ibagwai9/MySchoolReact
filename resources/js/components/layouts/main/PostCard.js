@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import Avatar from '@material-ui/core/Avatar';
-
+import ReactHtmlParser from 'react-html-parser'
 const styles = theme => ({
   media: {
     height: 0,
@@ -32,8 +32,8 @@ const PostCard = ({ classes, className, children, title, subtitle, imageUrl, ava
       title={title}
     />
     <CardContent>
-      <Typography component="p">
-        {body}
+      <Typography component="div">
+        { body } 
       </Typography>
     </CardContent>
     <CardActions>

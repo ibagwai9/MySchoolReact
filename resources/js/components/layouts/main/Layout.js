@@ -6,7 +6,7 @@ import AppBar from './AppBar';
 
 const styles = theme => ({
   root: {
-    minWidth: '80%',
+    minWidth: '100%',
   },
   wrapper: {
     width: '100%',
@@ -20,7 +20,7 @@ const styles = theme => ({
   },
   main: {
     marginLeft: theme.spacing(3),
-    maxWidth: '50%',
+    maxWidth: '70%',
     flex: 1,
   },
 });

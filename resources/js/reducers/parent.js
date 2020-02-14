@@ -13,8 +13,14 @@ export function parent(state = {}, action) {
         error: action.error
       };
     case parentConstants.GETCHILD_SUCCESS:
-        return { parent: action.child };
+        return { ...state, ...action.child };
     case parentConstants.GETCHILD_FAILURE:
+      return { 
+        error: action.error
+      };
+    case parentConstants.GET_SESSIONS_SUCCESS:
+        return { ...state, ...action.sessions };
+    case parentConstants.GET_SESSIONS__FAILURE:
       return { 
         error: action.error
       };

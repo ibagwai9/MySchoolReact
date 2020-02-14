@@ -17,7 +17,7 @@ class Student extends Model {
      * @var array
      */
     protected $fillable = ['name','gender', 'student_reg', 'class_id','school_id', 'parent_id',
-                            'dob', 'profile_pix', 'created_at', 'updated_at'];
+                           'session_id', 'dob', 'profile_pix', 'created_at', 'updated_at'];
 
     /*
      * Some Validation rules for this model's new instance.
@@ -56,6 +56,11 @@ class Student extends Model {
         ->first();
     }
 
+    public function session()
+    {
+        return $this->belongsTo('App\Session', "session_id");
+    }
+
     public function studentClass()
     {
         return $this->belongsTo('App\StudentClass', "class_id");
@@ -66,11 +71,11 @@ class Student extends Model {
         return $this->belongsTo('App\StudentClass', "class_id");
     }
 
-     public function school()
+    public function school()
     {
         return $this->belongsTo('App\school', 'school_id');
     }
-
+    
     public function guardian()
     {
         return $this->belongsTo('App\Guardian', 'parent_id');

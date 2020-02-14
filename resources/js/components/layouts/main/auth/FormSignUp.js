@@ -37,7 +37,12 @@ const FormSignUp = ({ classes, className, onSubmit }) => {
   return (
     <Paper className={className}>
       <CardContent>
-        <Typography variant="h4" align="center">Login</Typography>
+        <div  className={classes.logoContainer}>
+            <img
+                className={classes.logo}
+                src={logo}
+            />
+        </div>
         <form className={classes.form} onSubmit={handleSubmit}>
           <TextField
             type="text"

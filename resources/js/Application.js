@@ -10,6 +10,9 @@ import { LayoutProvider } from "./admin-hook/context/LayoutContext";
 import { UserProvider } from "./admin-hook/context/UserContext";
 import ParentProfile from './apps/parent/dashboard/Dashboard';
 import ChildProfile from './apps/parent/dashboard/Student';
+import TerminalReport from './apps/parent/dashboard/TerminalReportConnected';
+import SessionReport from './apps/parent/dashboard/Session';
+import MainSession from './apps/parent/dashboard/MainSession';
 
  import {
   PageIndex,
@@ -52,9 +55,13 @@ class Application extends React.Component {
             <Route path="/sign-up" component={PageSignUp} />
             <Route path="/profile" component={UserProfilePage} />
 
-            <Route path="/guardian-login" component={ParentLogin} />
+            <Route path="/g-login" component={ParentLogin} />
+            <Route path="/g-register" component={PageSignUp} />
             <ParentRoute path="/g-profile/" component={ParentProfile} />
             <ParentRoute path="/g-child/:id" component={ChildProfile} />
+            <ParentRoute path="/g-child-report/:id/:session/:term" component={TerminalReport} />
+            <ParentRoute path="/g-child-ses-reports/:id/:session" component={SessionReport} />
+            <ParentRoute path="/g-child-view-reports/:id/:session" component={MainSession} />
             <Route path="/auth" exact component={AdminApp} />
             
             <AdminRoute path="/admin-dashboard" component={ParentProfile} />

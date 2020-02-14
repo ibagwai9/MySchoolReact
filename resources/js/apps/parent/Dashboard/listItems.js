@@ -9,6 +9,7 @@ import PeopleIcon from '@material-ui/icons/People';
 import BarChartIcon from '@material-ui/icons/BarChart';
 import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+import {history} from '../../../helpers'
 
 export const mainListItems = (
   <div>
@@ -16,7 +17,7 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+      <ListItemText onClick={()=>{history.push('/g-profile')}} primary="Dashboard" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -45,40 +46,42 @@ export const mainListItems = (
   </div>
 );
 
-export const secondaryListItems = (
-  <div>
-    <ListSubheader inset>TERMINAL REPORTS</ListSubheader>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Fist term" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Second term" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Third term" />
-    </ListItem>
-    <ListSubheader inset>TRANSCRIPTS</ListSubheader>
-     <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Current Session" />
-    </ListItem>
+export const SecondaryListItems  = ({student})=>{
+  return(
+    <div>
+      <ListSubheader inset>TERMINAL REPORTS</ListSubheader>
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText onClick={()=>{history.push(`/g-child-report/${student.id}/${student.session.id}/1`)}} primary="First term" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Second term" />
+      </ListItem>
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Third term" />
+      </ListItem>
+      <ListSubheader inset>TRANSCRIPTS</ListSubheader>
+       <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText onClick={()=>{history.push(`/g-child/${student.id}`)}} primary="Current Session" />
+      </ListItem>
 
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Previous Sessions" />
-    </ListItem>
-  </div>
-);
+      <ListItem button>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText onClick={()=>{history.push(`/g-child-ses-reports/${student.id}/${student.session.id}`)}} primary="Previous Sessions"/>
+      </ListItem>
+    </div>
+  );
+}

@@ -35,12 +35,10 @@ class  Student extends React.Component {
 
 
 const mapStateToProps = (state)=> {
-    const { parent } = state.parent
-    if(parent){
-      const {child} = parent
-    
-      if(child)
-        return  { child } 
+    const { child } = state.parent
+
+    if(child){
+      return  { child } 
     }
     return {}
 }
