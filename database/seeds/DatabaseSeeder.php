@@ -17,11 +17,11 @@ class DatabaseSeeder extends Seeder {
 
 
         $this->call([
-            StudentClassTableSeeder::class,
-            TeacherTableSeeder::class,
-            StudentTableSeeder::class,
             AdminTableSeeder::class,
+            TeacherTableSeeder::class,
             GuardianTableSeeder::class,
+            StudentTableSeeder::class,
+            StudentClassTableSeeder::class,
             CategoryTableSeeder::class,
             ThreadTableSeeder::class,
             TermTableSeeder::class,

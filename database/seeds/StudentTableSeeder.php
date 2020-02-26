@@ -16,7 +16,8 @@ class StudentTableSeeder extends Seeder {
             $student = Student::create(array(
                 'name' => $faker->name,
                 'gender'=> 'male',
-                'student_reg' => 'ELH'.rand(100000, 999999),
+                'parent_id'=> ($range>3 ? 1: $range ),
+                'student_reg' => 'ST'.rand(100000, 999999),
                 'class_id' => $faker->numberBetween(1, 11),
                 'class_type_id' => $faker->numberBetween(1, 5),
                 'dob' => $faker->date(),
@@ -26,7 +27,7 @@ class StudentTableSeeder extends Seeder {
             User::create(array(
                 'username'=> $student->student_reg,
                 'userable_id'=>$student->id,
-                'password' => bcrypt('secret'),
+                'password' => bcrypt('123456'),
                 'userable_type'=>"App\\Student"
             ));
         }

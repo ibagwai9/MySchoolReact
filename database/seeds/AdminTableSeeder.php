@@ -10,15 +10,15 @@ class AdminTableSeeder extends Seeder {
     {
         Admin::truncate();
 
-            $admin = Admin::create(array(
-                'name' => 'Administrator',
-                'username'=>'admin'));
+        $admin = Admin::create(array(
+            'name' => 'Administrator',
+            'username'=>'admin'));
 
-            User::create(array(
-                'username'=> $admin->username,
-                'userable_id'=>$admin->id,
-                'userable_type'=>"App\\Admin",
-                'password' => bcrypt('admin123')
-            ));
+        User::create(array(
+            'username'=> $admin->username,
+            'userable_id'=>$admin->id,
+            'userable_type'=>"App\\Admin",
+            'password' => bcrypt('admin123')
+        ));
     }
 }

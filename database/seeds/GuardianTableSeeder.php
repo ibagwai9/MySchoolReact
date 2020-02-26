@@ -21,7 +21,7 @@ class GuardianTableSeeder extends Seeder {
 
             User::create(array(
                 'username'=> $faker->unique()->userName,
-                'password'=> bcrypt("password"),
+                'password'=> bcrypt("123456"),
                 'userable_id'=>$guardian->id,
                 'userable_type'=>"App\\Guardian"
             ));

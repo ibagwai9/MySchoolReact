@@ -7,7 +7,7 @@ class CategoryTableSeeder extends Seeder {
 
     public function run()
     {
-        //Category::truncate();
+        Category::truncate();
 
         $faker = \Faker\Factory::create();
 

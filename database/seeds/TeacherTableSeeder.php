@@ -18,7 +18,7 @@ class TeacherTableSeeder extends Seeder {
                 'gender' => 'male',
                 'class_id' => $faker->numberBetween(1, 11),
                 'class_type_id' => $faker->numberBetween(1,5),
-                'teacher_reg' => 'ELH'.rand(100, 999),
+                'teacher_reg' => 'TC'.rand(100, 999),
                 'address' => $faker->address,
                 'phone' => $faker->phoneNumber,
             ));
@@ -27,7 +27,7 @@ class TeacherTableSeeder extends Seeder {
                 'username'=> $teacher->teacher_reg,
                 'userable_id'=>$teacher->id,
                 'userable_type'=>"App\\Teacher",
-                'password' => bcrypt('secret'),  
+                'password' => bcrypt('123456'),  
             ));
         }
     }
