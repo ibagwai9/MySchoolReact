@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
-
+// use App\Http\Controllers\Api\V1\ApiAuthController
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,17 +21,18 @@ Route::group(array('middleware'=>'api'), function() {
         Route::get('news', function(){
                 return 'Welcome to news';
         });
-    
+            
+        Route::post('login', 'AdminController@login');
+        Route::post('register', 'AdminController@register');
 
         Route::group(['prefix'=>'admin'], function() {
             Route::get('news', function () {
                 return 'Welcome';
             });
-            Route::post('login', 'AdminController@login');
-            Route::get('login', function()
-            {
-                return response()->json(['error'=>'Unauthorised','message'=>'login first'], 401);
-            })->name('login');
+            // Route::get('login', function()
+            // {
+            //     return response()->json(['error'=>'Unauthorised','message'=>'login first'], 401);
+            // })->name('login');
             Route::post('users','AdminController@users')->middleware('auth:api');
             Route::post('logout', 'AdminController@logout');
         

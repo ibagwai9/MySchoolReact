@@ -27,11 +27,11 @@ Route::get('/{path?}/{any?}/{s?}/{a?}/', function () {
 | contains the "web" middleware group. Now create something great!
 |
 
-
+*
 Route::get('/', function () {
     return view('welcome');
 });
-Auth::routes();
+// Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -43,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
 });
 
-*/
+/*
 
 /**
  * 
@@ -81,8 +81,7 @@ class LionFacade
 dd(LionFacade::run());
  *
 
-
-
+*
 
 
 
@@ -98,6 +97,7 @@ Route::group(array('prefix'=>'page'), function() {
 
     Route::get('/image-gallery', 'PageController@gallery');
     Route::get('/news', 'PageController@news');
+    Route::get('/guardian/register', 'AdminController@getRegister');
     Route::get('/show-news/{id}', 'PageController@showNews');
     Route::get('/about', 'PageController@about');
     Route::get('/contact', 'PageController@contact');

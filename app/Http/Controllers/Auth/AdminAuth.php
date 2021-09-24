@@ -2,6 +2,11 @@
 
 use Illuminate\Http\Request;
 use App\User; 
+use App\Admin;
+use App\Guardian;
+use App\Http\Requests\LoginRequest;
+use App\Student;
+use App\Teacher;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
 
@@ -13,11 +18,14 @@ trait AdminAuth {
      * 
      * @return \Illuminate\Http\Response 
      */ 
-    public function login(){ 
-        if(Auth::attempt(['username' => request('username'), 'password' => request('password')])){ 
+    public function login(LoginRequest $req){ 
+        if(Auth::attempt($req->only(['username','password']))){ 
             $user = Auth::user(); 
-            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
-            return response()->json(['success' => $success], $this-> successStatus); 
+            $token =  $user->createToken('MyApp')-> accessToken; 
+            $user->token = $token;
+             
+            $user->userable;
+            return response()->json(['success' =>true,'data'=>['user'=>$user,'token'=>$token]], $this-> successStatus); 
         } 
         else{ 
             return response()->json(['error'=>'Unauthorised'], 401); 
@@ -40,11 +48,36 @@ trait AdminAuth {
             return response()->json(['error'=>$validator->errors()], 401);            
         }
         $input = $request->all(); 
-        $input['password'] = bcrypt($input['password']); 
+        $type = $request->type;
+        switch ($type) {
+            case 'Admin':
+                $input['userable_type'] =  'App\Admin';
+                if($profile = Admin::create($input)){
+                    $input['userable_id'] = $profile->id;
+                }
+                break;
+            case 'Parent':
+                $input['userable_type'] =  'App\Guardian';
+                if($profile = Guardian::create($input)){
+                    $input['userable_id'] = $profile->id;
+                }
+                break;
+            case 'Teacher':
+                $input['userable_type'] =  'App\Teacher';
+                if($profile = Teacher::create($input)){
+                    $input['userable_id'] = $profile->id;
+                }
+                break;            
+            default:
+                $input['userable_type'] =  'App\Student';
+                if($profile = Student::create($input)){
+                    $input['userable_id'] = $profile->id;
+                }
+                break;
+        }
         $user = User::create($input); 
         $user['token'] =  $user->createToken('MyApp')-> accessToken; 
-        $user['name'] =  $user->name;
-        return response()->json(['user'=>$user], $this-> successStatus); 
+        return response()->json(['success'=>true,'user'=>$user], $this-> successStatus); 
     }
     /** 
      * details api 

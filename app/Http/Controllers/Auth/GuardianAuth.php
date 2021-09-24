@@ -61,7 +61,7 @@ trait GuardianAuth {
     { 
         $parent = Auth::user(); 
         $parent->userable;
-        $parent->userable->students;
+        // $parent->userable->students;
         return response()->json(['parent' => $parent], $this-> successStatus); 
     } 
 

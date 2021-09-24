@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import CardContent from '@material-ui/core/CardContent';
-
+import logo from '../../../../images/logo.png'
 const styles = theme => ({
   form: {
     display: 'flex',
@@ -14,8 +14,21 @@ const styles = theme => ({
   },
   submitButton: {
     marginTop: 24,
-  }
-});
+  },
+container: {
+    width: '100%'
+},
+logo: {
+    width: 100,
+    height:100
+},
+logoContainer:{
+    textAlign:'center',
+},
+clearBtn:{
+    float:'right'
+}
+})
 
 const FormSignUp = ({ classes, className, onSubmit }) => {
   const [values, setValues] = useState({
@@ -82,7 +95,7 @@ const FormSignUp = ({ classes, className, onSubmit }) => {
             type="submit"
             color="primary"
           >
-            Login
+            Sign-Up
           </Button>
         </form>
       </CardContent>

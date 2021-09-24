@@ -1,9 +1,9 @@
 export const authHeader= ()=> {
     // return authorization header with jwt token
-    let user = JSON.parse(localStorage.getItem('user'));
-    console.log({authHeader:user});
-    if (user && user.token) {
-        return { 'Authorization': 'Bearer ' + user.token };
+    let user = JSON.parse(localStorage.getItem('token'));
+    console.error({authHeaderwe:user});
+    if (user ) {
+        return { 'Authorization': 'Bearer ' + token };
     } else {
         return {};
     }

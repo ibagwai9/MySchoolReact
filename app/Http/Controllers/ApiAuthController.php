@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Role;
@@ -19,15 +19,16 @@ class ApiAuthController extends Controller
      */
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
-
+        $credentials = $request->only('username', 'password');
+        
+        // return response()->json(['cred'=>$this->guard()->attempt($credentials)]);
         try {
             if ($token = $this->guard()->attempt($credentials)) {
                 $token = $this->respondWithToken($token);
                 return response()->json(compact('token'), 200);
             }
 
-            return response()->json(['error' => 'invalid email or password'], 401);
+            return response()->json(['error' => 'invalid username or password '], 401);
 
         } catch (\Exception $e) {
             return response()->json(['error' => 'could not create token'], 500);
@@ -71,7 +72,7 @@ class ApiAuthController extends Controller
         $validator =  Validator::make($request->all(), [
             'name' => 'required',
             'username' => 'required|unique:users',
-            'email' => 'required|email|unique:users',
+            // 'email' => 'required|email|unique:users',
             'password' => 'required'
         ]);
 

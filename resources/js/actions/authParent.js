@@ -21,7 +21,7 @@ function login(username, password) {
                 parent => { 
                     dispatch(success(parent));
                     console.log({action_success:parent})
-                    history.push('/g-profile')
+                    history.push('/dashboard')
                 },
                 error => {
                     dispatch(failure(error));

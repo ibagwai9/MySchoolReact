@@ -18,15 +18,14 @@ function login(username, password) {
             .then(
                 user => { 
                     dispatch(success(user));
-                    console.log({action_success:user})
                     history.push('/dashboard')
                 },
-                error => {
-                    dispatch(failure(error));
-                    console.log({error})
-                    dispatch(alertActions.error(error));
-                }
-            );
+            )
+            .catch(error=>{
+                dispatch(failure(error));
+                console.error({error})
+                dispatch(alertActions.error(error));
+            })
     };
 
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }

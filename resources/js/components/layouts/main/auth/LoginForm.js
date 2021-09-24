@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles'
-import asyncLoginValidate from './asyncLoginValidate'
 import { reduxForm, Field } from 'redux-form'
 
 import { connect } from 'react-redux'
-import { userActions, parentActions } from '../../../../actions'
+import { userActions } from '../../../../actions'
  
 import logo from '../../../../images/logo.png'
 import { Button, 
@@ -13,13 +12,11 @@ import { Button,
     Paper,
     Typography,
     CardContent,
-    InputLabel,
     FormHelperText,
     Radio,
     RadioGroup,
     FormControl,
     FormControlLabel,
-    Avatar,
     Checkbox    } from '@material-ui/core'
 
 class LoginForm extends React.Component{
@@ -86,19 +83,10 @@ class LoginForm extends React.Component{
     }
     handleLoginSubmit(props){
         this.setState({ submitted: true })
-
-        const { email, password, dispatch } = props
+        const { email, password } = props
         const username = email
         if (username && password) {
-            switch(this.props.user) {
-                case 'Parent':
-                    this.props.dispatch(parentActions.login(username, password));
-                    break;
-                default :
-                    this.props.dispatch(userActions.login(username, password));
-                    break;
-            }
-           
+            this.props.dispatch(userActions.login(username, password));
         }
     }
   
@@ -136,13 +124,14 @@ class LoginForm extends React.Component{
                 <Typography variant="h5" align="center">{user} Login</Typography>
                 <Typography variant="subtitle2" color="secondary" align="center">{this.state.loginError}</Typography>
 
-                <form className={classes.form} onSubmit={handleSubmit(this.handleLoginSubmit.bind(this))}>
+                <form className={classes.form} onSubmit={
+                    handleSubmit(this.handleLoginSubmit.bind(this))}>
                     
                     <div  className={classes.container}>
                         <Field name="email" component={this.renderTextField} label="Email or Username" />
                     </div>
                     <div  className={classes.container}>
-                        <Field name="password" component={this.renderTextField} password="true" label="Password" />
+                        <Field name="password" type="password" component={this.renderTextField} password="true" label="Password" />
                     </div>
                     <div>
                         <Field name="remember" component={this.renderCheckbox} label="Remember-Me" />
@@ -152,10 +141,10 @@ class LoginForm extends React.Component{
                         <Button 
                             variant="contained" 
                             type="submit" 
-                            size='small' 
+                            size='medium' 
                             color='primary' 
                             disabled={pristine || submitting}>
-                            Submit
+                            Login
                         </Button>
                         <Button  size='small' className={classes.clearBtn} color='secondary' type="button" disabled={pristine || submitting} onClick={reset}>
                             Clear Values
@@ -212,6 +201,5 @@ const connectedLoginPage = connect(mapStateToProps)(LoginForm);
 export default withStyles(styles)(reduxForm({
     form:'LoginForm',
     fields:['email','password'],
-    validate:LoginForm.validate,
-    asyncLoginValidate
+    validate:LoginForm.validate
 })(connectedLoginPage));

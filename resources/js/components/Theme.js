@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { MuiThemeProvider } from '@material-ui/core';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createTheme as createMuiTheme } from '@material-ui/core/styles';
 import grey from '@material-ui/core/colors/grey';
 
 const theme = createMuiTheme({

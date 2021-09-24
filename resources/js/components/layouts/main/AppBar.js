@@ -110,7 +110,7 @@ const AppBar = ({ classes, children }) => {
         <IconButton
           className={classes.icon}
           onClick={handleToggleRegister}
-          buttonRef={registerButton}
+          ref={registerButton}
         >
           <EditIcon />
           <span>Register</span>
@@ -132,7 +132,12 @@ const AppBar = ({ classes, children }) => {
           <List style={{fontSize:'10'}}>
             <NavListItem> 
               <Button className={classes.btn}>
-              <Link style={{textDecoration: 'none'}} to="/g-sing-up">Guardian</Link>
+              <Link style={{textDecoration: 'none'}} to="/g-register">Guardian</Link>
+              </Button>
+            </NavListItem>
+            <NavListItem> 
+              <Button className={classes.btn}>
+              <Link style={{textDecoration: 'none'}} to="/s-register">Student</Link>
               </Button>
             </NavListItem>
           </List>
@@ -140,7 +145,7 @@ const AppBar = ({ classes, children }) => {
         <IconButton
           className={classes.icon}
           onClick={handleToggleLogin}
-          buttonRef={loginButton}
+          ref={loginButton}
         >
           <LockOpen />
           <span>Login</span>
@@ -161,22 +166,22 @@ const AppBar = ({ classes, children }) => {
         <List>
           <NavListItem> 
             <Button className={classes.btn}>
-              <Link style={{textDecoration: 'none'}}   to="/login">Admin</Link>
+              <Link style={{textDecoration: 'none'}}   to="/login/Admin">Admin</Link>
             </Button>
           </NavListItem>
           <NavListItem> 
             <Button className={classes.btn}>
-              <Link style={{textDecoration: 'none'}}  to="/t-login">Teacher</Link>
+              <Link style={{textDecoration: 'none'}}  to="/login/Teacher">Teacher</Link>
             </Button>
           </NavListItem>
           <NavListItem> 
             <Button className={classes.btn}>
-              <Link style={{textDecoration: 'none'}} to="/g-login">Guardian</Link>
+              <Link style={{textDecoration: 'none'}} to="/login/Guardian">Guardian</Link>
             </Button>
           </NavListItem>
           <NavListItem> 
             <Button className={classes.btn}>
-              <Link style={{textDecoration: 'none'}} to="/s-login">Student</Link>
+              <Link style={{textDecoration: 'none'}} to="/login/Student">Student</Link>
             </Button>
           </NavListItem>
         </List>
@@ -184,7 +189,7 @@ const AppBar = ({ classes, children }) => {
         <IconButton
           className={classes.icon}
           onClick={handleToggleNotification}
-          buttonRef={notificationButton}
+          ref={notificationButton}
         >
           <Info />About
           

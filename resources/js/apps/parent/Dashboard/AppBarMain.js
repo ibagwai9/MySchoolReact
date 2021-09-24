@@ -135,7 +135,7 @@ const rendLastList = (student = null)=>{
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            <Link to='/g-profile' style={{textDecoration:'none'}}>Parent Dashboard</Link>
+            <Link to='/dashboard' style={{textDecoration:'none'}}>Parent Dashboard</Link>
           </Typography>
           <IconButton color="inherit">
           <Link to='g-login'> <LockIcon /></Link>

@@ -17,7 +17,7 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText onClick={()=>{history.push('/g-profile')}} primary="Dashboard" />
+      <ListItemText onClick={()=>{history.push('/dashboard')}} primary="Dashboard" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
@@ -29,7 +29,7 @@ export const mainListItems = (
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="MyChildren" />
+      <ListItemText onClick={()=>{history.push('/dashboard')}} primary="MyChildren" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>

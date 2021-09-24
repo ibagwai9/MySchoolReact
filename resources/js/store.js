@@ -1,7 +1,7 @@
 
 
 import { createStore,  combineReducers, applyMiddleware } from "redux";
-import { reducer as formReducer } from "redux-form";
+import { reducer  } from "redux-form";
 import reduxThunk from 'redux-thunk';
 //import userReducer from "./reducers/users";
 import { authentication } from './reducers/authentication';
@@ -9,17 +9,18 @@ import { users } from './reducers/users';
 import { user } from './reducers/user';
 import { parent } from './reducers/parent';
 import { alert } from './reducers/alert';
+import logger from 'redux-logger'
 
 const rootReducer = combineReducers({
   authentication,
   users,
-  user,
+  auth:user,
   parent,
   alert,
-  form: formReducer,
+  form: reducer,
 });
 
-const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk));
+const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk, logger));
 /*
 const store = createStore(rootReducer, {}, applyMiddleware(reduxThunk, ReduxPromise));
 

@@ -8,7 +8,7 @@ import { alert } from './alert';
 const rootReducer = combineReducers({
   authentication,
   users,
-  user,
+  auth:user,
   alert
 });
 

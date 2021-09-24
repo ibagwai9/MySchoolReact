@@ -14,20 +14,17 @@ class CreateStudentTable extends Migration {
 	{
 		Schema::create('students', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->id();
             $table->string('name');
             $table->string('gender', 10);
             $table->smallInteger('class_id');
             $table->smallInteger('class_type_id');
-            $table->smallInteger('parent_id');
+            $table->unsignedBigInteger('parent_id');
             $table->string('student_reg', 9)->unique();
             $table->date('dob');
             $table->string('phone', 25);
             $table->string('profile_pix')->default('default.jpg');
-            $table->foreign('parent_id')
-            ->references('id')
-            ->on('parents')
-		    ->onDelete('cascade');
+            $table->foreign('parent_id')->references('id')->on('parents');
 			$table->timestamps();
 		});
 	}

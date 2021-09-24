@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor
 /ReactAuth
+package-lock.json
 .env
 .env.backup
 .phpunit.result.cache

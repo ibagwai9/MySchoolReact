@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import FormLogin from '../../components/layouts/main/auth/LoginForm';
+import {useParams} from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -17,13 +18,13 @@ const styles = theme => ({
 const ParentLogin = ({ classes, history }) => {
   const handleSubmit = (values) => {
     console.log('submitting Parent form', values);
-    history.push('/');
+    history.push('/dashboard');
   };
-
+  const {type} = useParams()
   return (
     <div className={classes.root}>
       <FormLogin
-        user='Parent'
+        user={type||'Admin'}
         className={classes.form}
         onSubmit={handleSubmit}
       />
