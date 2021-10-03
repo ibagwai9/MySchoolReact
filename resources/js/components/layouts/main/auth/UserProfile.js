@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles'
 import { Grid, Paper, Avatar,Typography,  CardContent } from '@material-ui/core'
 import { connect } from 'react-redux'
-import { userActions } from '../../../../actions' 
+import { userActions } from '../../../../redux/actions' 
 import logo from '../../../../images/logo.png'
 import PostCard from '../PostCard'
 import ProfileHeader from '../ProfileHeader'

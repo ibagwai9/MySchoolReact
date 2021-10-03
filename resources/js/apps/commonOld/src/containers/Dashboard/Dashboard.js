@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import '../../App.css';
 import DashboardOld from './DashboardOld'
 //Actions
-import { userActions } from '../../../../../actions' 
+import { userActions } from '../../../../../redux/actions' 
 
 class  Dashboard extends React.Component {
 

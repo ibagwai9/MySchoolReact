@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import '../../common/App.css';
 import TerminalReport from './TerminalReport'
 import PrintReportSheet from './PrintReportSheet'
-import { parentActions } from '../../../actions' 
+import { userActions } from '../../../redux/actions' 
 
 class  Terminal extends React.Component {
 
@@ -18,7 +18,7 @@ class  Terminal extends React.Component {
 
   componentDidMount() {
     let { id, term, session } = this.props.match.params
-    this.props.dispatch(parentActions.getChild(id))
+    this.props.dispatch(userActions.getChild(id))
   }
 
   handleDrawerClose(){

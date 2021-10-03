@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles, TextField, Button } from '@material-ui/core';
-import { addContact } from "../../../actions/contacts";
+import { addContact } from "../../../redux/actions/contacts";
 
 const useStyles = makeStyles(theme => ({
     root: {

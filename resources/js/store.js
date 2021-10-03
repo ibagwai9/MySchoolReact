@@ -3,12 +3,12 @@
 import { createStore,  combineReducers, applyMiddleware } from "redux";
 import { reducer  } from "redux-form";
 import reduxThunk from 'redux-thunk';
-//import userReducer from "./reducers/users";
-import { authentication } from './reducers/authentication';
-import { users } from './reducers/users';
-import { user } from './reducers/user';
-import { parent } from './reducers/parent';
-import { alert } from './reducers/alert';
+//import userReducer from "./redux/reducers/users";
+import { authentication } from './redux/reducers/authentication';
+import { users } from './redux/reducers/users';
+import { user } from './redux/reducers/user';
+import { parent } from './redux/reducers/parent';
+import { alert } from './redux/reducers/alert';
 import logger from 'redux-logger'
 
 const rootReducer = combineReducers({

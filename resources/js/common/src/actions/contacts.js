@@ -1,4 +1,4 @@
-import { ADD_CONTACT, DEL_CONTACT } from "../constants/actionTypes"
+import { ADD_CONTACT, DEL_CONTACT } from "../../redux/constants/actionTypes"
 /*
  * action creators
  */

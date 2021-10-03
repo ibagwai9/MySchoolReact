@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import '../../common/App.css';
 import StudentProfile from './StudentProfile'
-import { parentActions } from '../../../actions' 
+import { userActions } from '../../../redux/actions' 
 
 class  MainSession extends React.Component {
 
@@ -16,8 +16,8 @@ class  MainSession extends React.Component {
   componentDidMount() {
     let  id = this.props.match.params.id
     let  session = this.props.match.params.session
-    this.props.dispatch(parentActions.getChild(id))
-    this.props.dispatch(parentActions.getSessionsFrom(session))
+    this.props.dispatch(userActions.getChild(id))
+    this.props.dispatch(userActions.getSessionsFrom(session))
   }
 
   handleDrawerClose(){

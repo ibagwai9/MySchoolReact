@@ -1,6 +1,6 @@
 import React from "react";
-import {URLS, userConstants} from '../../constants'
-import { userService } from '../../services';
+import {URLS, userConstants} from '../../redux/constants'
+import { userService } from '../../redux/services';
 import { authHeader } from '../../helpers'
 
 var UserStateContext = React.createContext();

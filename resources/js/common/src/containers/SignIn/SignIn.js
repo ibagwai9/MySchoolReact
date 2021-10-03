@@ -5,7 +5,7 @@ import asyncLoginValidate from './asyncLoginValidate'
 import { reduxForm, Field } from 'redux-form'
 
 import { connect } from 'react-redux'
-import { userActions } from '../../../../actions'
+import { userActions } from '../../../../redux/actions'
 import logo from '../../../../images/logo.png'
 import { Button, 
     TextField,

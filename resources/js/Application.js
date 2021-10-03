@@ -8,13 +8,12 @@ import logo from './images/logo.png'
 import Themes from "./admin-hook/themes";
 import { LayoutProvider } from "./admin-hook/context/LayoutContext";
 import { UserProvider } from "./admin-hook/context/UserContext";
-import GuardianProfile from './apps/parent/dashboard/Dashboard';
+import GuardianProfile from './apps/parent/dashboard/index';
 import ChildProfile from './apps/parent/dashboard/Student';
 import TerminalReport from './apps/parent/dashboard/TerminalReportConnected';
 import SessionReport from './apps/parent/dashboard/Session';
 import MainSession from './apps/parent/dashboard/MainSession';
 import {useSelector} from 'react-redux';
-// import App2 from './apps/admin/src/App'
  import {
   PageIndex,
   LoginPage,  
@@ -60,21 +59,21 @@ const AuthRoute = ({ component: Component, ...rest }) => (
         : <Component {...props} />
   )} />
 )
-    return (
-       <Router history={history}>
-            <Route path="/" exact component={PageIndex} />
-            <AuthRoute path="/login/:type?" component={LoginPage} />
-            <AuthRoute path="/register/:type?" component={PageSignUp} />
-            <Route path="/profile" component={UserProfilePage} />
-            <GuardianRoute path="/dashboard/" component={GuardianProfile} />
-            <GuardianRoute path="/g-child/:id" component={ChildProfile} />
-            <GuardianRoute path="/g-child-report/:id/:session/:term" component={TerminalReport} />
-            <GuardianRoute path="/g-child-ses-reports/:id/:session" component={SessionReport} />
-            <GuardianRoute path="/g-child-view-reports/:id/:session" component={MainSession} />
-            <AdminRoute path="/auth" exact component={AdminApp} />
-            {/* <Route path="/app" exact component={App2} /> */}
-        </Router>
-    )
+  return (
+      <Router history={history}>
+          <Route path="/" exact component={PageIndex} />
+          <AuthRoute path="/login/:type?" component={LoginPage} />
+          <AuthRoute path="/register/:type?" component={PageSignUp} />
+          <Route path="/profile" component={UserProfilePage} />
+          <GuardianRoute path="/dashboard/" component={GuardianProfile} />
+          <GuardianRoute path="/g-child/:id" component={ChildProfile} />
+          <GuardianRoute path="/g-child-report/:id/:session/:term" component={TerminalReport} />
+          <GuardianRoute path="/g-child-ses-reports/:id/:session" component={SessionReport} />
+          <GuardianRoute path="/g-child-view-reports/:id/:session" component={MainSession} />
+          <AdminRoute path="/auth" exact component={AdminApp} />
+          {/* <Route path="/app" exact component={App2} /> */}
+      </Router>
+  )
 } 
 
 export default Application;

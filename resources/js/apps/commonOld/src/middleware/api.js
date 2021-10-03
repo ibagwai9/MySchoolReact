@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import {HTTP_API} from '../constants/actionTypes';
+import {HTTP_API} from '../../redux/constants/actionTypes';
 import { apiStart, apiFinish } from '../actions/api';
 
 const apiMiddleware = ({ dispatch }) => next => action => {

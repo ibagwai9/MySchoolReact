@@ -10,6 +10,7 @@ import PostCard from './PostCard'
 import ProfileCard from './ProfileCard'
 import ProfileHeader from './ProfileHeader'
 import ProfileStats from './ProfileStats'
+import ParentRegister from './auth/ParentRegister'
 
 import FormSignUp from './auth/FormSignUp'
 import FormLogin from './auth/FormLogin'
@@ -27,6 +28,7 @@ export {
     ProfileHeader,
     ProfileStats, 
     FormSignUp,
+    ParentRegister,
     FormLogin,
     Footer
 }

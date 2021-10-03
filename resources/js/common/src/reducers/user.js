@@ -1,4 +1,4 @@
-import { SHOW_USERS_LIST } from "../constants/actionTypes"
+import { SHOW_USERS_LIST } from "../../redux/constants/actionTypes"
 
 export const users = (state = [], action) => {
   switch (action.type) {

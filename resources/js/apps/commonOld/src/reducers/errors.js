@@ -1,4 +1,4 @@
-import { SHOW_ERROR } from "../constants/actionTypes"
+import { SHOW_ERROR } from "../../redux/constants/actionTypes"
 
 const initialState = []
 

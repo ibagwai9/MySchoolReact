@@ -1,4 +1,4 @@
-import { HTTP_API } from "../constants/actionTypes"
+import { HTTP_API } from "../../redux/constants/actionTypes"
 import { SHOW_ERROR, SHOW_USERS_LIST } from "../constants/actionTypes"
 
 export const showUsersList = (users) => ({

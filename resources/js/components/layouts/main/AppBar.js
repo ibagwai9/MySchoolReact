@@ -132,7 +132,7 @@ const AppBar = ({ classes, children }) => {
           <List style={{fontSize:'10'}}>
             <NavListItem> 
               <Button className={classes.btn}>
-              <Link style={{textDecoration: 'none'}} to="/g-register">Guardian</Link>
+              <Link style={{textDecoration: 'none'}} to="/register/Guardian">Guardian</Link>
               </Button>
             </NavListItem>
             <NavListItem> 

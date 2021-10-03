@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import '../../common/App.css';
 import DashboardOld from './DashboardOld'
-import { userActions } from '../../../actions' 
+import { userActions } from '../../../redux/actions' 
 
 class  Dashboard extends React.Component {
 

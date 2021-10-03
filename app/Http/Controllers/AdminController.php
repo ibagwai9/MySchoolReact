@@ -34,7 +34,7 @@ class AdminController extends Controller {
 
         
         $this->middleware('admin_auth', [
-           'except' => ['register', 'login']
+           'except' => ['register', 'login','user']
         ]);
         
 

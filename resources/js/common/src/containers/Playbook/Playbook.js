@@ -1,5 +1,5 @@
 import React from 'react';
-import { fetchUsers } from '../../actions/user.js';
+import { fetchUsers } from '../../redux/actions/user.js';
 import Button from '@material-ui/core/Button';
 import { ShowUsersList } from "./components/user";
 import { ShowErrors} from "./components/errors";

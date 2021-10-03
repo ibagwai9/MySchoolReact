@@ -1,5 +1,5 @@
 
-import { API_START, API_FINISH } from "../constants/actionTypes";
+import { API_START, API_FINISH } from "../../redux/constants/actionTypes";
 
 const uiReducer = (state = { pendingRequests: 0 }, action) => {
     switch (action.type) {

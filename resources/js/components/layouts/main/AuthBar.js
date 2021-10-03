@@ -27,7 +27,7 @@ const styles = theme => ({
   root: {},
   appBar: {
     background: '#9CD81D',
-    color:'white'
+    color: 'white'
   },
   toolbar: {
     width: '100%',
@@ -45,14 +45,14 @@ const styles = theme => ({
   icon: {
     marginRight: theme.spacing(3),
     margin: '10px',
-    color:'#FFFFFF'
+    color: '#FFFFFF'
   },
-  link: { 
-    textDecoration:'none',
+  link: {
+    textDecoration: 'none',
   },
-  logo: { 
+  logo: {
     marginLeft: '-120px',
-    marginRight:'20px'
+    marginRight: '20px'
   }
 });
 
@@ -78,24 +78,22 @@ const AuthBar = ({ classes, children }) => {
   return (
     <AppBarBase className={classes.appBar} position="static" color="default">
       <Toolbar className={classes.toolbar}>
-      <Avatar
+        <Avatar
           className={classes.icon, classes.logo}
           src={logo}
         />
         <Typography variant="h4" color="inherit">
-          <Link className={classes.link} to="/">BGWSchools</Link>
+          <Link className={classes.link} to="/">IBAcademy</Link>
         </Typography>
         <InputSearch
           className={classes.search}
           placeholder="Search"
           fullWidth={false}
         />
-        
-        
-  </Toolbar>
+      </Toolbar>
       <Avatar
-          className={classes.icon}
-          src={logo}
+        className={classes.icon}
+        src={logo}
       />
     </AppBarBase >
   );

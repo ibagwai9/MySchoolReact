@@ -24,6 +24,8 @@ Route::group(array('middleware'=>'api'), function() {
             
         Route::post('login', 'AdminController@login');
         Route::post('register', 'AdminController@register');
+          //Dashboard
+        Route::post('user', 'AdminController@user')->middleware('auth:api');
 
         Route::group(['prefix'=>'admin'], function() {
             Route::get('news', function () {
@@ -36,9 +38,6 @@ Route::group(array('middleware'=>'api'), function() {
             Route::post('users','AdminController@users')->middleware('auth:api');
             Route::post('logout', 'AdminController@logout');
         
-            //Dashboard
-            Route::post('user', 'AdminController@user')->middleware('auth:api');
-
         });
 
         Route::group(array('prefix'=>'teacher'), function() {
@@ -91,11 +90,11 @@ Route::group(array('middleware'=>'api'), function() {
 
         Route::group(['prefix'=>'guardian'], function() {
            
-            Route::post('login', 'GuardianController@login');
-            Route::get('login', function()
-            {
-                return response()->json(['error'=>'Unauthorised','message'=>'login first'], 401);
-            })->name('login');
+            // Route::post('login', 'GuardianController@login');
+            // Route::get('login', function()
+            // {
+            //     return response()->json(['error'=>'Unauthorised','message'=>'login first'], 401);
+            // })->name('login');
 
             Route::post('students','GuardianController@students')->middleware('auth:api');
 

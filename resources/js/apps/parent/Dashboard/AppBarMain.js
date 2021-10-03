@@ -22,7 +22,7 @@ import { mainListItems, SecondaryListItems } from './listItems';
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-
+import {userActions} from '../../../redux/actions/authUser'
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -138,7 +138,7 @@ const rendLastList = (student = null)=>{
             <Link to='/dashboard' style={{textDecoration:'none'}}>Parent Dashboard</Link>
           </Typography>
           <IconButton color="inherit">
-          <Link to='g-login'> <LockIcon /></Link>
+          <Link to='login' onClick={()=>userActions.logout()}> <LockIcon /></Link>
           </IconButton>
           <IconButton color="inherit">
             <Badge badgeContent={4} color="secondary">

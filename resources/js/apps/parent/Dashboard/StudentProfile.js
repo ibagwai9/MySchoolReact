@@ -13,7 +13,7 @@ import AppBarMain from './AppBarMain'
 import Students from'./Students'
 import ReportSheet from'./ReportSheet'
 import MyLink from'./ReportLink'
-import { URLS } from '../../../constants'
+import { URLS } from '../../../redux/constants'
 import { getSchool, getClass } from '../../../helpers'
 import ProfileHeader from '../../../components/layouts/main/ProfileHeader'
 

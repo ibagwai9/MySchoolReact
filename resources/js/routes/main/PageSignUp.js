@@ -1,20 +1,28 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import { FormSignUp }  from '../../components/layouts/main'
+import { FormSignUp, ParentRegister } from '../../components/layouts/main'
+import { useParams } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
-    padding: '120px 16px 16px',
+    padding: '50px 20px',
   },
   form: {
     width: '100%',
     maxWidth: 360,
     margin: '0 auto',
   },
+  
+  form2: {
+    width: '100%',
+    maxWidth: 600,
+    margin: '0 auto',
+  },
 });
 
 const PageSignUp = ({ classes, history }) => {
+  const { type } = useParams();
   const handleSubmit = (values) => {
     console.log('submitting formValues', values);
     history.push('/');
@@ -22,10 +30,26 @@ const PageSignUp = ({ classes, history }) => {
 
   return (
     <div className={classes.root}>
-      <FormSignUp
-        className={classes.form}
-        onSubmit={handleSubmit}
-      />
+      {type === 'Teacher' ? (
+        <FormSignUp
+          user='Teacher'
+          className={classes.form}
+          onSubmit={handleSubmit}
+        />
+      ) : type === 'Guardian' ?
+        (
+          <ParentRegister
+            className={classes.form2}
+            onSubmit={handleSubmit}
+            user='Guardian'
+          />
+        ) : (
+          <FormSignUp
+            user='Student'
+            className={classes.form}
+            onSubmit={handleSubmit}
+          />)
+      }
     </div>
   );
 };

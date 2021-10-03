@@ -1,4 +1,4 @@
-import { API_START, API_FINISH } from "../constants/actionTypes"
+import { API_START, API_FINISH } from "../../redux/constants/actionTypes"
 
 export const apiStart = (label) => ({
     type: API_START,
