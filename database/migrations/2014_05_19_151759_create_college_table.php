@@ -57,6 +57,6 @@ class CreateCollegeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('forum_categories');
+        Schema::drop('college');
     }
 }

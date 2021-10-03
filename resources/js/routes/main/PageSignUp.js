@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
-import { FormSignUp, ParentRegister } from '../../components/layouts/main'
+import { FormSignUp, ParentRegister, StudentRegister } from '../../components/layouts/main'
 import { useParams } from 'react-router-dom';
 
 const styles = theme => ({
@@ -44,9 +44,9 @@ const PageSignUp = ({ classes, history }) => {
             user='Guardian'
           />
         ) : (
-          <FormSignUp
+          <StudentRegister
             user='Student'
-            className={classes.form}
+            className={classes.form2}
             onSubmit={handleSubmit}
           />)
       }

@@ -27,7 +27,7 @@ class PayablesTable extends Migration
      *
      * @return void
      */
-    public function down(Schema $table)
+    public function down()
     {
         Schema::drop('payables');
     }

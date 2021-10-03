@@ -14,7 +14,9 @@ class StudentTableSeeder extends Seeder {
 
         foreach(range(1, 100) as $range) {
             $student = Student::create(array(
-                'name' => $faker->name,
+                'first_name' => $faker->name,
+                'last_name' => $faker->name,
+                'other_name' => $faker->name,
                 'gender'=> ($range>3 ? 'Male': 'Female' ),
                 'parent_id'=> $faker->numberBetween(1,10 ),
                 'student_reg' => 'ST'.rand(100000, 999999),

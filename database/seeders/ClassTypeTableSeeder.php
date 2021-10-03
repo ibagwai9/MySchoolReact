@@ -9,7 +9,7 @@ class ClassTypeTableSeeder extends Seeder {
     {
         School::truncate();
 
-        $groups = ['APEX', 'BLISS', 'GOLD', 'SILVER', 'BRONZE', 'DIAMOND'];
+        $groups = ['GENERAL', 'SCIENCE', 'ART', 'COMMERCIAL', 'TECHNICAL', 'BASIC'];
 
         foreach($groups as $key => $group) {
             School::create(array(

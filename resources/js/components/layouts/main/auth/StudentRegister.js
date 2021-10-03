@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles'
-import asyncLoginValidate from './asyncLoginValidate'
+// import asyncRegisterValidate from './asyncRegisterValidate'
 import { reduxForm, Field } from 'redux-form'
 
 import { connect } from 'react-redux'
@@ -28,11 +28,11 @@ import {
 	Grid
 } from '@material-ui/core';
 
-class LoginForm extends React.Component {
+class RegisterForm extends React.Component {
 	constructor(props) {
 		super(props)
 
-		// reset login status
+		// reset Register status
 		this.props.dispatch(userActions.logout());
 
 		this.state = {
@@ -116,14 +116,15 @@ class LoginForm extends React.Component {
 				label={label}
 			/>);
 	}
-	handleLoginSubmit(props) {
+
+	handleSubmit(props) {
 		this.setState({ submitted: true })
 		const { password, c_password } = props
+    props.user='Student';
 		if (c_password && password) {
 			this.props.dispatch(userActions.register(this.props));
 		}
 	}
-
 
 	genderSelector({ label, input, meta: { touched, invalid, error }, ...custom }) {
 		return (
@@ -163,7 +164,7 @@ class LoginForm extends React.Component {
 					<option value="">
 						{label}
 					</option>
-					{options.map((item,i)=>(<option value={item} key={i}>{item}</option>)}
+					{options.map((item,i)=>(<option value={item} key={i}>{item}</option>))}
 					<FormHelperText>{label}</FormHelperText>
 				</NativeSelect>
 				{custom.helper({ touched, error })}
@@ -209,8 +210,8 @@ class LoginForm extends React.Component {
 						/>
 					</div>
 					<Typography variant="h5" align="center">{user} Registration</Typography>
-					<Typography variant="subtitle2" color="secondary" align="center">{this.state.loginError}</Typography>
-					<form className={classes.form} onSubmit={handleSubmit(this.handleLoginSubmit.bind(this))}>
+					<Typography variant="subtitle2" color="secondary" align="center">{this.state.RegisterError}</Typography>
+					<form className={classes.form} onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
 						<Grid container spacing={0}>
 							{fields.map(field =>
 								field.type === 'select' ? (
@@ -278,13 +279,13 @@ const styles = theme => ({
 	}
 })
 
-LoginForm.propTypes = {
+RegisterForm.propTypes = {
 	classes: PropTypes.objectOf(PropTypes.string),
 	className: PropTypes.string,
 	onSubmit: PropTypes.func,
 }
 
-LoginForm.defaultProps = {
+RegisterForm.defaultProps = {
 	onSubmit: () => { },
 }
 const mapStateToProps = (state) => {
@@ -296,10 +297,10 @@ const mapStateToProps = (state) => {
 		loggingIn
 	}
 }
-const connectedLoginPage = connect(mapStateToProps)(LoginForm);
+const connectedRegisterPage = connect(mapStateToProps)(RegisterForm);
 
 export default withStyles(styles)(reduxForm({
-	form: 'LoginForm',
+	form: 'RegisterForm',
 	fields: [
 		'dob',
 		'pob',
@@ -316,6 +317,5 @@ export default withStyles(styles)(reduxForm({
 		'email',
 		'password',
 		'c_password'],
-	validate: LoginForm.validate,
-	asyncLoginValidate
-})(connectedLoginPage));
+	validate: RegisterForm.validate,
+})(connectedRegisterPage));

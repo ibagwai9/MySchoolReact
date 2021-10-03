@@ -137,7 +137,7 @@ const AppBar = ({ classes, children }) => {
             </NavListItem>
             <NavListItem> 
               <Button className={classes.btn}>
-              <Link style={{textDecoration: 'none'}} to="/s-register">Student</Link>
+              <Link style={{textDecoration: 'none'}} to="/register/Student">Student</Link>
               </Button>
             </NavListItem>
           </List>

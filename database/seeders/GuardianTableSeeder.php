@@ -16,7 +16,7 @@ class GuardianTableSeeder extends Seeder {
             $guardian = Guardian::create(array(
                 'name' => $faker->name,
                 'phone' => $faker->phoneNumber,
-                // 'child_reg' => $faker->unique()->userName,
+                'gender' =>($faker->numberBetween(1, 2) >1 ? 'Male': 'Female'),
             ));
 
             User::create(array(

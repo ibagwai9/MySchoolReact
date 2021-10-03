@@ -4,6 +4,7 @@ import { alertActions } from './index';
 import { history } from '../../helpers';
 
 export const userActions = {
+	register,
 	login,
 	logout,
 	getAuth,
@@ -15,6 +16,28 @@ function login(username, password) {
 		dispatch(request({ username }));
 
 		userService.login(username, password)
+			.then(
+				user => {
+					dispatch(success(user));
+					history.push('/dashboard');
+					// location = '/dashboard';
+				},
+			)
+			.catch(error => {
+				dispatch(failure(error));
+				console.error({ error })
+				dispatch(alertActions.error(error));
+			})
+	};
+
+	function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
+	function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
+	function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
+function register(data) {
+	return dispatch => {
+		userService.register(username, password)
 			.then(
 				user => {
 					dispatch(success(user));

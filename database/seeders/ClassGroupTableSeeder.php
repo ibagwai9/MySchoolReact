@@ -9,7 +9,7 @@ class ClassGroupTableSeeder extends Seeder {
     {
         ClassGroup::truncate();
 
-        $groups = ['LOWER', 'JUNIOR', 'SENIOR'];
+        $groups = ['PG', 'PRIMARY', 'JUNIOR', 'SENIOR'];
 
         foreach($groups as $key => $group) {
             ClassGroup::create(array(

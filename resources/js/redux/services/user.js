@@ -3,6 +3,7 @@ import { authHeader } from '../../helpers';
 
 export const userService = {
   login,
+  register,
   logout,
   getAuth,
   getAll
@@ -16,6 +17,31 @@ function login(username, password) {
   };
 
   return fetch(`${URLS.ROOT}/login`, requestOptions)
+    .then(handleResponse)
+    .then(res => {
+      // login successful if there's a jwt token in the response
+      console.log({fre_service_res:res.success});
+      if (res.success) {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        //console.log({service_res:res.success});
+        localStorage.setItem('user', JSON.stringify(res.data.user));
+        localStorage.setItem('token', JSON.stringify(res.data.token));
+        
+					// location.replace('/dashboard');
+      }
+
+      return res.data.user;
+    });
+}
+
+function register(data) {
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data
+  };
+
+  return fetch(`${URLS.ROOT}/register`, requestOptions)
     .then(handleResponse)
     .then(res => {
       // login successful if there's a jwt token in the response

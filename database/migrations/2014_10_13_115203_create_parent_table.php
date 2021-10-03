@@ -17,7 +17,7 @@ class CreateParentTable extends Migration {
 			$table->id();
             $table->string('name');
             $table->string('gender', 6);
-						$table->string('phone2',15)->nullable();
+						$table->string('phone',20)->nullable();
 						$table->string('email', 25)->nullable();
 						$table->string('religion', 25)->nullable();
 						$table->string('occupation', 200)->nullable();

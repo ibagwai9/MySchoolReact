@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder {
             // CategoryTableSeeder::class,
             // ThreadTableSeeder::class,
             TermTableSeeder::class,
-            SchoolTableSeeder::class,
+            // SchoolTableSeeder::class,
             SubjectTableSeeder::class,
             // PostTableSeeder::class,
             // NewsBoardTableSeeder::class,
