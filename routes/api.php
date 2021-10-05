@@ -21,9 +21,10 @@ Route::group(array('middleware'=>'api'), function() {
         Route::get('news', function(){
                 return 'Welcome to news';
         });
-            
+        
+        Route::post('upload-pic','StudentController@postPicture');//->middleware('api');
         Route::post('login', 'AdminController@login');
-        Route::post('register', 'AdminController@register');
+        Route::post('register', 'AdminController@register');//->middleware('auth:api');
           //Dashboard
         Route::post('user', 'AdminController@user')->middleware('auth:api');
 
@@ -72,6 +73,7 @@ Route::group(array('middleware'=>'api'), function() {
 
             Route::get('login', 'StudentController@getIndex');	
             Route::post('login', 'StudentController@postLogin');
+            Route::post('{student}', 'StudentController@getStudent');
             Route::get('register', 'StudentController@getRegister');
             Route::get('logout', 'StudentController@getLogout');
             //Student main route

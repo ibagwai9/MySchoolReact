@@ -16,8 +16,21 @@ class Student extends Model {
      *
      * @var array
      */
-    protected $fillable = ['name','gender', 'student_reg', 'class_id','school_id', 'parent_id',
-                           'session_id', 'dob', 'profile_pix', 'created_at', 'updated_at'];
+    protected $fillable = [ 	'dob',
+    'pob',
+    'first_name',
+    'last_name',
+    'other_name',
+    'gender',
+    'state',
+    'lga',
+    'phone',
+    'phone2',
+    'lga',
+    'religion',
+    'occupation',
+    'email','student_reg', 'class_id','school_id', 'parent_id',
+    'session_id', 'profile_pix', 'created_at', 'updated_at'];
 
     /*
      * Some Validation rules for this model's new instance.
@@ -99,5 +112,9 @@ class Student extends Model {
     public static function getGroup($value='')
     {
         return ClassGroup::where('name',$value)->first();
+    }
+    protected function setStudent_regAttribute($student_reg)
+    {
+    	$this->attributes['student_reg'] = Student::where('id','>',1)->count();
     }
 }

@@ -4,10 +4,10 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Contracts\Auth\Registrar;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Storage; 
 use App\Result;
 
 trait StudentAuth {
-
     /**
      * Show the application welcome screen to the user.
      *
@@ -109,6 +109,7 @@ trait StudentAuth {
         return 'These credentials do not match our records.';
     }
 
+    
     /**
      * Log the user out of the application.
      *

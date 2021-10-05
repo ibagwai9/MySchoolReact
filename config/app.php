@@ -167,7 +167,7 @@ return [
          * Package Service Providers...
          * 
          */
-        
+        CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         // Barryvdh\Cors\ServiceProvider::class, 
         // App\Providers\PassportServiceProvider::class,
@@ -181,6 +181,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\NavigationServiceProvider::class,
        // Riari\Forum\ForumServiceProvider::class,
+       'Intervention\Image\ImageServiceProvider',
     ],
 
     /*
@@ -231,7 +232,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'Cloudinary' => CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary::class,
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

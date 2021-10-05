@@ -22,6 +22,11 @@ export function user(state = init, action) {
         error: action.error,
         loading:false,
       };
+    case 'GUEST-STUDENT':
+    return {
+        ...state,
+        student:action.payload,
+    }
     default:
       return state
   }

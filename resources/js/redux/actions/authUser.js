@@ -8,7 +8,8 @@ export const userActions = {
 	login,
 	logout,
 	getAuth,
-	getAll
+	getAll,
+	getStudent
 };
 
 function login(username, password) {
@@ -37,7 +38,7 @@ function login(username, password) {
 
 function register(data) {
 	return dispatch => {
-		userService.register(username, password)
+		userService.register(data)
 			.then(
 				user => {
 					dispatch(success(user));
@@ -55,6 +56,27 @@ function register(data) {
 	function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
 	function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
 	function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+function getStudent(id){
+	return dispatch => {
+		userService.getStudent(id)
+			.then(
+				user => {
+					dispatch(success(user));
+					// location = '/dashboard';
+				},
+			)
+			.catch(error => {
+				dispatch(failure(error));
+				console.error({ error })
+				dispatch(alertActions.error(error));
+			})
+	};
+
+	// function request(user) { return { type: 'GUEST-STUDENT', user } }
+	function success(user) { return  { type: 'GUEST-STUDENT', payload:user.student }  } 
+	function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+
 }
 
 function logout() {

@@ -6,7 +6,9 @@ export const userService = {
   register,
   logout,
   getAuth,
-  getAll
+  getAll,
+  getStudent,
+  uploadPicture,
 };
 
 function login(username, password) {
@@ -33,28 +35,51 @@ function login(username, password) {
       return res.data.user;
     });
 }
+function uploadPicture (picture){
+  // sessionStorage.removeItem('profile_pix');
+  // if(picture)
+  // console.error(picture)
+  // const form = new FormData(pic)
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type':'application/json',
+    'X-Requested-With':'XMLHttpRequest' },
+    body: JSON.stringify({ image:picture })
+  };
 
+  return fetch(`${URLS.ROOT}/upload-pic`, requestOptions)
+    .then(handleResponse)
+    .then(res => {
+        sessionStorage.removeItem('profile_pix');
+      // login successful if there's a jwt token in the response
+      console.log({frexxxxxxxS_service_res:res.success});
+      if (res.success) {
+        sessionStorage.setItem('profile_pix',res.url);
+      }
+
+      return res;
+    });
+}
 function register(data) {
+  console.error({data})
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(data
+    body: JSON.stringify(data)
   };
-
   return fetch(`${URLS.ROOT}/register`, requestOptions)
     .then(handleResponse)
     .then(res => {
       // login successful if there's a jwt token in the response
-      console.log({fre_service_res:res.success});
+      console.log({fre_service_res:res});
       if (res.success) {
+        console.error({data});
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         //console.log({service_res:res.success});
-        localStorage.setItem('user', JSON.stringify(res.data.user));
-        localStorage.setItem('token', JSON.stringify(res.data.token));
-        
-					// location.replace('/dashboard');
+        // localStorage.setItem('user', JSON.stringify(res.data.user));
+        localStorage.setItem('student', JSON.stringify(res)); 
+        location.replace(`/register-success/${res.user.userable_id}`);
       }
-
       return res.data.user;
     });
 }
@@ -70,7 +95,6 @@ function getAll() {
     method: 'POST',
     headers: authHeader()
   };
-
   return fetch(`${URLS.ROOT}/users`, requestOptions).then(handleResponse);
 }
 
@@ -81,6 +105,14 @@ function getAuth() {
   };
 
   return fetch(`${URLS.ROOT_ADMIN}/user`, requestOptions).then(handleResponse);
+}
+function getStudent(id) {
+  const requestOptions = {
+    method: 'POST',
+    headers: {'Content-Type':'application/json'},
+  };
+
+  return fetch(`${URLS.ROOT}/student/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

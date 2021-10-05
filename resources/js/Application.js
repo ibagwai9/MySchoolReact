@@ -18,7 +18,9 @@ import {useSelector} from 'react-redux';
   PageIndex,
   LoginPage,  
   UserProfilePage ,
-  PageSignUp } from './routes/main'
+  PageSignUp,
+  RegSuccess  
+  } from './routes/main'
 import App from './admin-hook/components/App'
 const AdminApp =()=>{
   return <LayoutProvider>
@@ -71,7 +73,8 @@ const AuthRoute = ({ component: Component, ...rest }) => (
           <GuardianRoute path="/g-child-ses-reports/:id/:session" component={SessionReport} />
           <GuardianRoute path="/g-child-view-reports/:id/:session" component={MainSession} />
           <AdminRoute path="/auth" exact component={AdminApp} />
-          {/* <Route path="/app" exact component={App2} /> */}
+          <Route path="/register-success/:id?" exact component={RegSuccess} />
+          {/* <Route path="/app" exact component={App2} /> */} 
       </Router>
   )
 } 

@@ -38,8 +38,8 @@ trait AdminAuth {
      */ 
     public function register(Request $request) 
     { 
+        // dd($request);
         $validator = Validator::make($request->all(), [ 
-            'name' => 'required', 
             'email' => 'required|email', 
             'password' => 'required', 
             'c_password' => 'required|same:password', 
@@ -69,7 +69,10 @@ trait AdminAuth {
                 }
                 break;            
             default:
-                $input['userable_type'] =  'App\Student';
+            $input['userable_type'] =  'App\Student';
+            $input['student_reg'] = 'ST'.Student::where('id','>',1)->count();
+            $input['username'] = 'ST'.Student::where('id','>',1)->count();
+
                 if($profile = Student::create($input)){
                     $input['userable_id'] = $profile->id;
                 }
@@ -77,7 +80,7 @@ trait AdminAuth {
         }
         $user = User::create($input); 
         $user['token'] =  $user->createToken('MyApp')-> accessToken; 
-        return response()->json(['success'=>true,'user'=>$user], $this-> successStatus); 
+    return response()->json(['success'=>true,'user'=>$user], $this->successStatus); 
     }
     /** 
      * details api 

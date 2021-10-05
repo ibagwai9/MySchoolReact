@@ -6,7 +6,7 @@ import { reduxForm, Field } from 'redux-form'
 import { connect } from 'react-redux'
 import { userActions } from '../../../../redux/actions'
  
-import logo from '../../../../images/logo.png'
+import logo from '../../../../assets/images/logog.jpg'
 import { Button, 
     TextField,
     Paper,

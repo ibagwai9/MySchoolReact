@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles'
 // import asyncRegisterValidate from './asyncRegisterValidate'
 import { reduxForm, Field } from 'redux-form'
+import DropFile from '../../../DropLocalFile'
 
 import { connect } from 'react-redux'
 import { userActions } from '../../../../redux/actions'
+import { getSchools, getClasses } from '../../../../helpers'
 
-import logo from '../../../../images/logo.png'
+import logo from '../../../../assets/images/logo.jpg'
 
 import {
 	Button,
@@ -54,10 +56,7 @@ class RegisterForm extends React.Component {
 			'state',
 			'lga',
 			'phone',
-			'lga',
 			'occupation',
-			'email',
-			'is_parent',
 			'password',
 			'c_password'
 		]
@@ -87,7 +86,7 @@ class RegisterForm extends React.Component {
 				<TextField
 					label={label}
 					placeholder={label}
-					margin="normal"
+					margin='dense'
 					style={{ width: '100%' }}
 					error={touched && invalid}
 					helperText={touched && error}
@@ -105,7 +104,7 @@ class RegisterForm extends React.Component {
 					<Checkbox
 						checked={input.value ? true : false}
 						onChange={input.onChange}
-						margin="normal"
+						margin="dense"
 						style={{ width: '10' }}
 						error={touched && invalid}
 						helperText={touched && error}
@@ -117,44 +116,23 @@ class RegisterForm extends React.Component {
 			/>);
 	}
 
-	handleSubmit(props) {
+	handleRegSubmit(props) {
 		this.setState({ submitted: true })
-		const { password, c_password } = props
-    props.user='Student';
-		if (c_password && password) {
-			this.props.dispatch(userActions.register(this.props));
+    console.error(props)
+		const { password } = props
+    props.type='Student';
+    props.profile_pix=sessionStorage.getItem('profile_pix');
+		if (password && props.profile_pix) {
+			this.props.dispatch(userActions.register(props));
 		}
 	}
 
-	genderSelector({ label, input, meta: { touched, invalid, error }, ...custom }) {
-		return (
-			<FormControl>
-				<FormLabel>&nbsp;</FormLabel>
-				<NativeSelect
-					margin='normal'
-					style={{ width: '100%' }}
-					error={touched && invalid}
-					helperText={touched && error}
-					{...input}
-					{...custom}
-				>
-					<option value="">
-						Select gender
-					</option>
-					<option value="female" control={<Radio />} label="Female" />
-					<option value="male" control={<Radio />} label="Male" />
-					<option value="other" control={<Radio />} label="Other" />
-					<FormHelperText>Select gender</FormHelperText>
-				</NativeSelect>
-				{custom.helper({ touched, error })}
-			</FormControl>)
-	}
   	renderSelect({ label, input, options, meta: { touched, invalid, error }, ...custom }) {
 		return (
 			<FormControl>
-				<FormLabel>&nbsp;</FormLabel>
+					<FormHelperText>{label}</FormHelperText>
 				<NativeSelect
-					margin='normal'
+					margin='dense'
 					style={{ width: '100%' }}
 					error={touched && invalid}
 					helperText={touched && error}
@@ -165,7 +143,7 @@ class RegisterForm extends React.Component {
 						{label}
 					</option>
 					{options.map((item,i)=>(<option value={item} key={i}>{item}</option>))}
-					<FormHelperText>{label}</FormHelperText>
+				
 				</NativeSelect>
 				{custom.helper({ touched, error })}
 			</FormControl>)
@@ -184,11 +162,17 @@ class RegisterForm extends React.Component {
 			{ name: 'first_name', label: 'First name', type: 'text' },
 			{ name: 'last_name', label: 'Last name', type: 'text' },
 			{ name: 'other_name', label: 'Other name', type: 'text' },
-			{ name: 'gender', label: 'Gender', type: 'select' },
+			{ name: 'gender', label: 'Gender', type: 'select', options:['Male','Female','Other'] },
 			{ name: 'dob', label: 'Date of birth', type: 'text' },
 			{ name: 'pob', label: 'Place of birth', type: 'text' },
+			{ name: 'school', label: 'Select school', type: 'select',
+				options:getSchools().map(s=>s.name) },
+			{ name: 'class', label: 'Select class', type: 'select', 
+				options:getClasses().map(c=>c.name) },
 			{ name: 'pname', label: 'Guardian name', type: 'text' },
 			{ name: 'address', label: 'Address', type: 'text' },
+			{ name: 'lga', label: 'Local govt. of origin', type: 'text' },
+			{ name: 'state', label: 'State of origin', type: 'text' },
 			{ name: 'phone', label: 'Primary phone', type: 'text' },
 			{ name: 'phone2', label: 'Alternative phone', type: 'text' },
 			{ name: 'email', label: 'Guardian Email', type: 'text' },
@@ -201,7 +185,7 @@ class RegisterForm extends React.Component {
 		]
 		const { handleSubmit, pristine, reset, className, submitting, classes, loggingIn, user } = this.props
 		return (
-			<Paper className={className}>
+			<Paper className={className} style={{paddingLeft:60}}>
 				<CardContent>
 					<div className={classes.logoContainer}>
 						<img
@@ -211,33 +195,36 @@ class RegisterForm extends React.Component {
 					</div>
 					<Typography variant="h5" align="center">{user} Registration</Typography>
 					<Typography variant="subtitle2" color="secondary" align="center">{this.state.RegisterError}</Typography>
-					<form className={classes.form} onSubmit={handleSubmit(this.handleSubmit.bind(this))}>
+					<form className={classes.form} onSubmit={handleSubmit(this.handleRegSubmit.bind(this))}>
 						<Grid container spacing={0}>
-							{fields.map(field =>
+							{fields.map((field,i) =>
 								field.type === 'select' ? (
-									<Grid item xs={12} sm={6}>
+									<Grid key={i} item xs={12} sm={6}>
 										<Field name={field.name} component={this.renderSelect} label={field.label}
 											helper={this.renderFormHelper}
-                      options={['Male','Female','Other']}
+                      options={field.options}
 										/>
 									</Grid>) : field.type === 'password' ?
 									(
-										<Grid item xs={12} sm={6}>
+										<Grid key={i} item xs={12} sm={6}>
 											<Field name={field.name} component={this.renderTextField} type="password" password="true" label={field.label} />
 										</Grid>)
 									: field.type === 'checkbox' ? (
-										<Grid item xs={12} sm={6}>
+										<Grid key={i} item xs={12} sm={6}>
 											<Field name={field.name} component={this.renderCheckbox}
 												label={field.label} />
 										</Grid>
 									) :
 										(
-											<Grid item xs={12} sm={6}>
+											<Grid key={i} item xs={12} sm={6}>
 												<Field name={field.name} component={this.renderTextField} label={field.label} />
 											</Grid>
 										)
 							)}
 							<div>
+							<Grid item xs={12} sm={12} lg={12} md={12} style={{width:'100%'}}>
+								<DropFile  style={{width:'100%'}}/>
+							</Grid>
 								<Button
 									variant="contained"
 									type="submit"
@@ -268,7 +255,7 @@ const styles = theme => ({
 		width: '100%'
 	},
 	logo: {
-		width: 100,
+		width: 300,
 		height: 100
 	},
 	logoContainer: {
@@ -306,13 +293,16 @@ export default withStyles(styles)(reduxForm({
 		'pob',
 		'first_name',
 		'last_name',
+		'other_name',
 		'gender',
 		'address',
 		'pname',
 		'state',
 		'lga',
 		'phone',
+		'phone2',
 		'lga',
+		'religion',
 		'occupation',
 		'email',
 		'password',
