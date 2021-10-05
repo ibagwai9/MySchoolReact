@@ -74,7 +74,7 @@
                     <!-- WHITE PANEL - TOP USER -->
                     <div class="white-panel pn" style="height: 25em">
                         <div class="white-header">
-                            <h5>{{$student->student_reg}}</h5>
+                            <h5>{{$student->reg_no}}</h5>
                         </div>
                         <p><img src="{{asset('/student_photo/'.$student->profile_pix)}}" class="img-circle" width="80"></p>
                         <p><b>{{$student->name}}</b></p>

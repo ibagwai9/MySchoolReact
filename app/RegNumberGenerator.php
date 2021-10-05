@@ -35,7 +35,7 @@ class RegNumberGenerator
 		if($user->userable_type === "App\\Student"){
 			$code .= $user->getStudent()->studentClass->name[0];
 			$code .= $user->getStudent()->studentClass->name[1];
-			$user->student_reg = $code."/$count";
+			$user->reg_no = $code."/$count";
 			$user->save();
 		}
 	}

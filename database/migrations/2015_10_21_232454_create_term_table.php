@@ -14,7 +14,7 @@ class CreateTermTable extends Migration {
 	{
 		Schema::create('terms', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->id();
             $table->string('name', 8);
 			$table->timestamps();
 		});

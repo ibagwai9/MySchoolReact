@@ -45,12 +45,16 @@ trait GuardianAuth {
         if ($validator->fails()) { 
             return response()->json(['error'=>$validator->errors()], 401);            
         }
-        $input = $request->all(); 
-        $input['password'] = bcrypt($input['password']); 
-        $parent = User::create($input); 
-        $parent['token'] =  $parent->createToken('MyApp')-> accessToken; 
-        $parent['name'] =  $parent->name;
-        return response()->json(['parent'=>$parent], $this-> successStatus); 
+        $input = $request->all();  
+        $input['userable_type'] =  'App\Guardian';
+       
+        if($profile = Guardian::create($input)){
+            $input['userable_id'] = $profile->id;
+            $parent = User::create($input);            
+            $parent['token'] =  $parent->createToken('MyApp')->accessToken;
+            return response()->json(['success'=>true,'parent'=>$parent],$this-> successStatus);
+        }
+        return response()->json(['success'=>false,'msg'=>'Fail to create profile'], 401); 
     }
     /** 
      * details api 

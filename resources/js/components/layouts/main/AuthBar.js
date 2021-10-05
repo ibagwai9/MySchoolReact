@@ -83,7 +83,7 @@ const AuthBar = ({ classes, children }) => {
           src={logo}
         />
         <Typography variant="h4" color="inherit">
-          <Link className={classes.link} to="/">IBAcademy</Link>
+          <Link className={classes.link} to="/">KGAT Academy</Link>
         </Typography>
         <InputSearch
           className={classes.search}

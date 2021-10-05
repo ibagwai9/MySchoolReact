@@ -53,7 +53,7 @@ class RegisterForm extends React.Component {
 			'last_name',
 			'gender',
 			'address',
-			'pname',
+			'parent_name',
 			'state',
 			'lga',
 			'phone',
@@ -83,7 +83,7 @@ class RegisterForm extends React.Component {
 
 	renderTextField({ label, input, type, meta: { touched, invalid, error }, ...custom }) {
 		return type==='date'?(
-			<FormControl style={{marginTop:5}}>
+			<FormControl style={{marginTop:5, borderBottom:error ?'1 solid red !important':'1 solid black !important'}}>
 				<FormHelperText>{label}</FormHelperText>
 			<input type='date'
 			style={{ width: '100%', border:'none', borderBottom:'1 solid black'}}
@@ -99,6 +99,7 @@ class RegisterForm extends React.Component {
 					label={label}
 					placeholder={label}
 					margin='dense'
+					type={type}
 					style={{ width: '100%' }}
 					error={touched && invalid}
 					helperText={touched && error}
@@ -181,7 +182,7 @@ class RegisterForm extends React.Component {
 				options:getSchools().map(s=>s.name) },
 			{ name: 'class', label: 'Select class', type: 'select', 
 				options:getClasses().map(c=>c.name) },
-			{ name: 'pname', label: 'Guardian name', type: 'text' },
+			{ name: 'parent_name', label: 'Guardian name', type: 'text' },
 			{ name: 'address', label: 'Address', type: 'text' },
 			{ name: 'lga', label: 'Local govt. of origin', type: 'text' },
 			{ name: 'state', label: 'State of origin', type: 'text' },
@@ -190,7 +191,7 @@ class RegisterForm extends React.Component {
 			{ name: 'email', label: 'Guardian Email', type: 'text' },
 			{ name: 'religion', label: 'Religion', type: 'text' },
 			{ name: 'occupation', label: 'Occupation', type: 'text' },
-			{ name: 'is_parent', label: 'Guardian is parent', type: 'checkbox' },
+			{ name: 'has_extra_class', label: 'I am Tahfeez student', type: 'checkbox' },
 			{ name: 'password', label: 'Password', type: 'password' },
 			{ name: 'c_password', label: 'Confirm password', type: 'password' },
 
@@ -308,7 +309,7 @@ export default withStyles(styles)(reduxForm({
 		'other_name',
 		'gender',
 		'address',
-		'pname',
+		'parent_name',
 		'state',
 		'lga',
 		'phone',

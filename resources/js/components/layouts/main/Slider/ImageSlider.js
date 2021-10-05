@@ -38,13 +38,13 @@ function Project(props)
 
 const items = [
     {
-        name: "iBAcademy",
+        name: "KGAT Academy",
         description: "Internet Base Academy",
         color: "#9CD81D",
         src:imgOne
     },
     {
-        name: "iBAcademy Version 0.1",
+        name: "KGAT Academy Version 0.1",
         description: "Ishaq Ibrahim Academy Project 2020",
         color: "#7D85B1",
         src:imgOne
@@ -104,7 +104,7 @@ export default class ImageSlider extends React.Component
     {
         return (
             <div style={{marginTop: "50px", color: "#494949"}}>
-                <h2 style={{textAlign:'center', color:'green'}}>Welcome to iBAcademy (School Management Sestem)</h2>
+                <h2 style={{textAlign:'center', color:'green'}}>Welcome to KGAT Academy (School Management Sestem)</h2>
 
                 <Carousel 
                     className="SecondExample"

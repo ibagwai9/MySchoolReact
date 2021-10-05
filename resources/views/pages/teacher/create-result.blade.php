@@ -96,7 +96,7 @@
                                                     <?php $i=1?>
                                                     <tr>
                                                         <td>{{$student->name}}</td>
-                                                        <td>{{$student->student_reg}}
+                                                        <td>{{$student->reg_no}}
                                                             <input type="hidden" name="students[]" value="{{$student->id}}">
                                                         </td>
                                     @if($this_sbj)

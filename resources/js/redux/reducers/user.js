@@ -27,6 +27,11 @@ export function user(state = init, action) {
         ...state,
         student:action.payload,
     }
+    case 'PARENT-REGISTER':
+    return {
+        ...state,
+        parent:action.payload,
+    }
     default:
       return state
   }

@@ -160,7 +160,6 @@ class NewsController extends Controller {
         $dateTo = $dateTo->format('Y-m-d H:i:s');
 
         echo $dateFrom. " ". $dateTo;
-
         $news = NewsBoard::where('created_at', '>=', $dateFrom)->where('created_at', '<=', $dateTo)->get();
 
         if ($news->count() > 0)

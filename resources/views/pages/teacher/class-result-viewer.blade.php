@@ -69,7 +69,7 @@
                                                 <tr class="bg-info">
                                                     <td style="width: 60px">{{$i}}</td>
                                                     <td class="text-center">{{@$student->name}}</td>
-                                                    <td  class="text-center">{{@$student->student_reg}}</td>
+                                                    <td  class="text-center">{{@$student->reg_no}}</td>
                                                     <td style="text-align: center;">{{@$student->id}}<sup>th</sup></td>
                                                 </tr>
                                             </thead>

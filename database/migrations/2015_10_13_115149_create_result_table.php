@@ -14,7 +14,7 @@ class CreateResultTable extends Migration {
 	{
 		Schema::create('results', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->id();
             $table->integer('student');
             $table->smallInteger('subjects');
             $table->smallInteger('class');

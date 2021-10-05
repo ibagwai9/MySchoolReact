@@ -86,7 +86,7 @@
                     @if ($students)
                         @foreach($students as $student)
                             <tr>
-                                <td>{{$student->student_reg}}</td>
+                                <td>{{$student->reg_no}}</td>
                                 <td>{{$student->name}}</td>
                                 <td>{{$student->studentClass->name}}</td>
                                 <td>{{$student->school->name}}</td>

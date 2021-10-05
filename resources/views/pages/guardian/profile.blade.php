@@ -90,7 +90,7 @@
                                             margin: 10px">
                                                 <a
                                                 href="/guardian/childs/{{ $student->id}}">
-                                                {{ $student->student_reg}}
+                                                {{ $student->reg_no}}
                                                 <a href="/guardian/view-result/{{$student->id}}" class="btn-link">Result</a>
                                             </li>                                        
                                         @endforeach

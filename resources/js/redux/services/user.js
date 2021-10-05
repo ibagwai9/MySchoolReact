@@ -9,6 +9,7 @@ export const userService = {
   getAll,
   getStudent,
   uploadPicture,
+  registerParent
 };
 
 function login(username, password) {
@@ -60,6 +61,30 @@ function uploadPicture (picture){
       return res;
     });
 }
+function registerParent (data){
+  console.error({data})
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  };
+  return fetch(`${URLS.ROOT}/guardian/register`, requestOptions)
+    .then(handleResponse)
+    .then(res => {
+      // login successful if there's a jwt token in the response
+      console.log({fre_service_res:res});
+      if (res.success) {
+        console.error({data});
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        //console.log({service_res:res.success});
+        // localStorage.setItem('user', JSON.stringify(res.data.user));
+        localStorage.setItem('student', JSON.stringify(res)); 
+        location.replace(`/register-success/${res.user.userable_id}`);
+      }
+      return res.data.user;
+    });
+}
+
 function register(data) {
   console.error({data})
   const requestOptions = {

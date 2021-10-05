@@ -64,7 +64,7 @@
                                                     <?php $i=1; $student = $result->student ?>
                                                     <tr>
                                                         <td>{{@$student->name}}</td>
-                                                        <td>{{@$student->student_reg}}</td>
+                                                        <td>{{@$student->reg_no}}</td>
                                                         <td>{{@$student->getResult($subject->id, $term->id)->ca}}</td>
                                                         <td>{{@$student->getResult($subject->id, $term->id)->score}}</td>
                                                         <td><?php $total = (int)@$student->getResult($subject->id, $term->id)->score + (int)@$student->getResult($subject->id, $term->id)->ca ?>

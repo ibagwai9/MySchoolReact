@@ -39,7 +39,7 @@ class StudentAccountController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        $request['username'] = $request->student_reg;
+        $request['username'] = $request->reg_no;
         $user_data = $request->only('username', 'password');
         $validator1 = Validator::make($request->all(), Student::$validationRules);
         $validator2 = Validator::make($user_data, User::$CreateRules);
@@ -73,7 +73,7 @@ class StudentAccountController extends Controller {
        // return dd($request->school_id);
 
         $student = Student::create(array_merge($request->except('image'),
-            ['student_reg'=>$reg_no]));
+            ['reg_no'=>$reg_no]));
 
         User::create(array_merge($user_data,[
             'userable_id' => $student->id,

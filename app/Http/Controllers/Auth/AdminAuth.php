@@ -6,6 +6,8 @@ use App\Admin;
 use App\Guardian;
 use App\Http\Requests\LoginRequest;
 use App\Student;
+use App\ClassGroup;
+use App\StudentClass;
 use App\Teacher;
 use Illuminate\Support\Facades\Auth; 
 use Validator;
@@ -70,9 +72,14 @@ trait AdminAuth {
                 break;            
             default:
             $input['userable_type'] =  'App\Student';
-            $input['student_reg'] = 'ST'.Student::where('id','>',1)->count();
-            $input['username'] = 'ST'.Student::where('id','>',1)->count();
-
+            $code = ClassGroup::where('name',$request['school'])->get();
+            $cls = StudentClass::where('name',$request['class'])->get();
+           
+            $input['reg_no'] = $code[0]->code.(Student::where('id','>',1)->count()+1);
+            $input['username'] = $input['reg_no'];
+            $input['class_type_id'] = $code[0]->group_id;
+            $input['class_id'] = $cls[0]->id;
+            
                 if($profile = Student::create($input)){
                     $input['userable_id'] = $profile->id;
                 }

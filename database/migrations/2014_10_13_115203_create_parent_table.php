@@ -3,7 +3,8 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateParentTable extends Migration {
+class CreateParentTable extends Migration
+{
 
 	/**
 	 * Run the migrations.
@@ -12,17 +13,16 @@ class CreateParentTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('parents', function(Blueprint $table)
-		{
+		Schema::create('parents', function (Blueprint $table) {
 			$table->id();
-            $table->string('name');
-            $table->string('gender', 6);
-						$table->string('phone',20)->nullable();
-						$table->string('email', 25)->nullable();
-						$table->string('religion', 25)->nullable();
-						$table->string('occupation', 200)->nullable();
-            $table->string('address', 500)->nullable();
-            $table->string('profile_pix')->nullable();
+			$table->string('name');
+			$table->string('gender', 6)->nullable();
+			$table->string('phone', 20)->nullable();
+			$table->string('email', 25)->nullable();
+			$table->string('religion', 25)->nullable();
+			$table->string('occupation', 200)->nullable();
+			$table->string('address', 500)->nullable();
+			$table->string('profile_pix')->nullable();
 			$table->timestamps();
 		});
 	}
@@ -36,5 +36,4 @@ class CreateParentTable extends Migration {
 	{
 		Schema::drop('parents');
 	}
-
 }

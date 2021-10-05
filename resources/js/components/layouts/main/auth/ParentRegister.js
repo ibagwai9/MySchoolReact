@@ -44,20 +44,14 @@ class LoginForm extends React.Component {
 	static validate(values) {
 		const errors = {}
 		const requiredFields = [
-			'dob',
-			'pob',
-			'first_name',
-			'last_name',
+			'name',
 			'gender',
 			'address',
-			'pname',
 			'state',
 			'lga',
 			'phone',
-			'lga',
 			'occupation',
 			'email',
-			'terms',
 			'password',
 			'c_password'
 		]
@@ -120,7 +114,7 @@ class LoginForm extends React.Component {
 		this.setState({ submitted: true })
 		const { password, c_password } = props
 		if (c_password && password) {
-			this.props.dispatch(userActions.register(this.props));
+			this.props.dispatch(userActions.registerParent(this.props));
 		}
 	}
 

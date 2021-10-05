@@ -66,7 +66,7 @@
                     </div>
                     <div class="panel panel-body">
                         <p>Gender: {{$student->gender}}</p>
-                        <p>Reg. No. : {{$student->student_reg}}</p>
+                        <p>Reg. No. : {{$student->reg_no}}</p>
                         <p>Class: {{$student->studentClass->name}} {{$student->school->name}}</p>
                         <hr />
                         <h3 class="text-center">Guardian details</h3>

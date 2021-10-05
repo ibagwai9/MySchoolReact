@@ -82,8 +82,6 @@ Route::group(array('middleware'=>'api'), function() {
             Route::get('view-result', 'StudentController@getViewResult');
             Route::get('edit-profile/{student}', 'StudentController@getEditProfile');
             Route::post('edit-profile', 'StudentController@postEditProfile');
-
-
             Route::post('register', 'StudentController@postRegister');
             Route::resource("/", 'StudentController', [
                 'getProfile' => 'profile'
@@ -91,15 +89,9 @@ Route::group(array('middleware'=>'api'), function() {
         });
 
         Route::group(['prefix'=>'guardian'], function() {
-           
-            // Route::post('login', 'GuardianController@login');
-            // Route::get('login', function()
-            // {
-            //     return response()->json(['error'=>'Unauthorised','message'=>'login first'], 401);
-            // })->name('login');
 
+            Route::post('register', 'GuardianController@register');      
             Route::post('students','GuardianController@students')->middleware('auth:api');
-
             Route::get('school/{school}','GuardianController@getSchool');
 
             Route::post('logout', 'GuardianController@logout');

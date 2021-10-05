@@ -37,7 +37,7 @@ class RegSucess extends React.Component{
 
     render(){
         const {classes, className} = this.props;
-        // const {id,pob,first_name,last_name,other_name,gender,state,lga,phone,phone2,religion,occupation,email,student_reg, class_id,school_id, parent_id,session_id, profile_pix, created_at} = this.props?.student;
+        // const {id,pob,first_name,last_name,other_name,gender,state,lga,phone,phone2,religion,occupation,email,reg_no, class_id,school_id, parent_id,session_id, profile_pix, created_at} = this.props?.student;
          const {student} = this.props
          return (
         <Paper className={className}>

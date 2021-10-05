@@ -15,7 +15,7 @@ class PayablesTable extends Migration
     {
         Schema::create('payables', function(Blueprint $table)
         {
-            $table->increments('id');
+            $table->id();
             $table->string('item');
             $table->string('price', 6);
             $table->timestamps();

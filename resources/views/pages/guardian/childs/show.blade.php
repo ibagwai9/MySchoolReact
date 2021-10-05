@@ -65,7 +65,7 @@
                     <!-- WHITE PANEL - TOP USER -->
                     <div class="white-panel pn" style="height: 25em">
                         <div class="white-header">
-                            <h5>Reg. N<u>o</u>{{$student->student_reg}}</h5>
+                            <h5>Reg. N<u>o</u>{{$student->reg_no}}</h5>
                         </div>
                         <p><img src="{{asset('/student_photo/'.$student->profile_pix)}}" class="img-circle" style="width: 80px; height: 80px"></p>
                         <p><b>{{$student->name}}</b></p>

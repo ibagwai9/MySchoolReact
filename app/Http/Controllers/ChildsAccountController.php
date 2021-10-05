@@ -43,7 +43,7 @@ class ChildsAccountController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        $request['username'] = $request->student_reg;
+        $request['username'] = $request->reg_no;
         $user_data = $request->only('username', 'password');
         return dd($request->all());
         $validator1 = Validator::make($request->all(), Student::$validationRules);
@@ -78,10 +78,10 @@ class ChildsAccountController extends Controller {
        // return dd($request->school_id);
 
         $student = Student::create(array_merge($request->except('image'),
-            ['student_reg'=>$reg_no, 'parent_id'=>Auth::user()->userable_id]));
+            ['reg_no'=>$reg_no, 'parent_id'=>Auth::user()->userable_id]));
 
         User::create([
-            'username'=> $student->student_reg,
+            'username'=> $student->reg_no,
             'userable_id' => $student->id,
             'userable_type' => 'App\\Student'
         ]);

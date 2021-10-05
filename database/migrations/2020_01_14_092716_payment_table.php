@@ -15,7 +15,7 @@ class PaymentTable extends Migration
     {
         Schema::create('payments', function(Blueprint $table)
         {
-            $table->increments('id');
+            $table->id();
             $table->string('price', 6);
             $table->integer('student_id');
             $table->integer('parent_id');

@@ -9,7 +9,8 @@ export const userActions = {
 	logout,
 	getAuth,
 	getAll,
-	getStudent
+	getStudent,
+	registerParent,
 };
 
 function login(username, password) {
@@ -35,6 +36,27 @@ function login(username, password) {
 	function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
 	function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
+
+function registerParent(data) {
+	return dispatch => {
+		userService.registerParent(data)
+			.then(
+				user => {
+					dispatch(success(user));
+					history.push('/dashboard');
+					// location = '/dashboard';
+				},
+			)
+			.catch(error => {
+				dispatch(failure(error));
+				console.error({ error })
+				dispatch(alertActions.error(error));
+			})
+	};
+	function success(user) { return { type: 'PARENT-REGISTER', payload: user } }
+	function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+}
+
 
 function register(data) {
 	return dispatch => {

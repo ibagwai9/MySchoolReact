@@ -14,7 +14,7 @@ class CreateNewsboardTable extends Migration {
 	{
 		Schema::create('newsboards', function(Blueprint $table)
 		{
-			$table->increments('id');
+			$table->id();
             $table->string('title');
             $table->text('news');
             $table->smallInteger('publish')->default('0');

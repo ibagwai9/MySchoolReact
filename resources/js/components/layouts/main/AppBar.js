@@ -101,7 +101,7 @@ const AppBar = ({ classes, children }) => {
           src={logo}
         />
         <Typography variant="h4" color="inherit">
-          <Link style={{textDecoration: 'none'}} to="/">IBAcademy</Link>
+          <Link style={{textDecoration: 'none'}} to="/">KGAT Academy</Link>
         </Typography>
        
         <div className={classes.flex} />

@@ -12,11 +12,14 @@ class CreateClassGroupTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('classgroups', function(Blueprint $table)
+		Schema::create('classgroups', 
+		function(Blueprint $table)
 		{
-			$table->increments('id');
-            $table->string('name', 11);
-            $table->timestamps();
+			$table->id();
+			$table->string('group_id',2)->nullable();
+			$table->string('name', 20);
+			$table->string('code', 20)->nullable();
+			$table->timestamps();
 		});
 	}
 
