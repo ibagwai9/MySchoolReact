@@ -61,7 +61,7 @@ const AuthRoute = ({ component: Component, ...rest }) => (
         : <Component {...props} />
   )} />
 )
-  return (
+  return (  
       <Router history={history}>
           <Route path="/" exact component={PageIndex} />
           <AuthRoute path="/login/:type?" component={LoginPage} />

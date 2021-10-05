@@ -15,6 +15,7 @@ import {
 	Button,
 	TextField,
 	Paper,
+	DateField,
 	Typography,
 	CardContent,
 	InputLabel,
@@ -80,8 +81,19 @@ class RegisterForm extends React.Component {
 		return errors
 	}
 
-	renderTextField({ label, input, meta: { touched, invalid, error }, ...custom }) {
-		return (
+	renderTextField({ label, input, type, meta: { touched, invalid, error }, ...custom }) {
+		return type==='date'?(
+			<FormControl style={{marginTop:5}}>
+				<FormHelperText>{label}</FormHelperText>
+			<input type='date'
+			style={{ width: '100%', border:'none', borderBottom:'1 solid black'}}
+			{...input}
+			{...custom}
+		/>
+			{touched && error  && error && (<span style={{color:'red'}}>{error}</span>)}
+	</FormControl>
+		)
+		:(
 			<FormControl>
 				<TextField
 					label={label}
@@ -163,7 +175,7 @@ class RegisterForm extends React.Component {
 			{ name: 'last_name', label: 'Last name', type: 'text' },
 			{ name: 'other_name', label: 'Other name', type: 'text' },
 			{ name: 'gender', label: 'Gender', type: 'select', options:['Male','Female','Other'] },
-			{ name: 'dob', label: 'Date of birth', type: 'text' },
+			{ name: 'dob', label: 'Date of birth', type: 'date' },
 			{ name: 'pob', label: 'Place of birth', type: 'text' },
 			{ name: 'school', label: 'Select school', type: 'select',
 				options:getSchools().map(s=>s.name) },
@@ -217,7 +229,7 @@ class RegisterForm extends React.Component {
 									) :
 										(
 											<Grid key={i} item xs={12} sm={6}>
-												<Field name={field.name} component={this.renderTextField} label={field.label} />
+												<Field name={field.name} component={this.renderTextField}  type={field.type}  label={field.label} />
 											</Grid>
 										)
 							)}
