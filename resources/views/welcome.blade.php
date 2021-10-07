@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>KGAT Academy (SMS) </title>
-        <link rel="stylesheet" type="text/css" href="http://127.0.0.1:8000/css/app.css">
+        <link rel="stylesheet" type="text/css" href="{{env('APP_URL')}}/css/app.css">
     </head>
     <body>
         <div id="root"></div>
@@ -12,9 +12,9 @@
             You need to enable JavaScript to run this app.
         </noscript>
         @if(env('APP_ENV') === 'local')
-            <script src="http://127.0.0.1:8000/js/app.js"></script>
+            <script src="{{env('APP_URL')}}/js/app.js"></script>
         @else
-            <script src="/js/app.js"></script>
+            <script src="{{env('APP_URL')}}/js/app.js"></script>
         @endif
     </body>
 </html>

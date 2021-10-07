@@ -1,10 +1,8 @@
 import React from 'react'
 import { Route, Router, Redirect } from 'react-router-dom'
-import { Provider } from "react-redux"
 import { history } from './helpers'
 import { ThemeProvider } from "@material-ui/styles";
 import { CssBaseline } from "@material-ui/core";
-import logo from './images/logo.png'
 import Themes from "./admin-hook/themes";
 import { LayoutProvider } from "./admin-hook/context/LayoutContext";
 import { UserProvider } from "./admin-hook/context/UserContext";
@@ -13,13 +11,12 @@ import ChildProfile from './apps/parent/dashboard/Student';
 import TerminalReport from './apps/parent/dashboard/TerminalReportConnected';
 import SessionReport from './apps/parent/dashboard/Session';
 import MainSession from './apps/parent/dashboard/MainSession';
-import {useSelector} from 'react-redux';
  import {
   PageIndex,
   LoginPage,  
   UserProfilePage ,
   PageSignUp,
-  RegSuccess  
+  RegSuccess
   } from './routes/main'
 import App from './admin-hook/components/App'
 const AdminApp =()=>{

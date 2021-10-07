@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 import { userActions } from '../../../../redux/actions'
 import { getSchools, getClasses } from '../../../../helpers'
 
-import logo from '../../../../assets/images/logo.jpg'
+import {URLS} from '../../../../redux/constants'
 
 import {
 	Button,
@@ -203,7 +203,7 @@ class RegisterForm extends React.Component {
 					<div className={classes.logoContainer}>
 						<img
 							className={classes.logo}
-							src={logo}
+							src={`${URLS.PUBLIC_ROOT}/img/logo.jpg`}
 						/>
 					</div>
 					<Typography variant="h5" align="center">{user} Registration</Typography>

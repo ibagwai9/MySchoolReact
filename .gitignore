@@ -4,6 +4,8 @@
 /storage/*.key
 /vendor
 /ReactAuth
+/public/images/profiles/
+
 package-lock.json
 .env
 .env.backup
